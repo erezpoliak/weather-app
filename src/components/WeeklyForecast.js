@@ -30,7 +30,8 @@ const WeeklyForecast = () => {
                 return <DayDiv>
                     <div>{getDayName(i.Date)}</div>
                     <WeatherIcon src = {`${iconUrl}${i.Day.Icon}.svg`}></WeatherIcon>
-                    <div>{`${i.Temperature.Minimum.Value} ${i.Temperature.Maximum.Value}`}</div>
+                    <div>{`${i.Temperature.Maximum.Value}F`}</div>
+                    <MinimumDiv>{`${i.Temperature.Minimum.Value}F`}</MinimumDiv>
                 </DayDiv>
             })}
         </Container>
@@ -54,6 +55,10 @@ const DayDiv = styled.div`
 const WeatherIcon = styled.img`
     height: 50%;
     width: 50%;
+`;
+
+const MinimumDiv = styled.div`
+    opacity: 0.6;
 `;
 
 
