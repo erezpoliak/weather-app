@@ -1,17 +1,16 @@
 import React, {useState,useEffect} from 'react';
 import styled from 'styled-components';
+import * as Api from './Api';
 
 const WeeklyForecast = () => {
     const [data,setData] = useState([]);
     const iconUrl = 'https://www.accuweather.com/images/weathericons/';
     useEffect(() =>{
-        const fetchData = async () =>{
-            let url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/215854?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8';
-            let fetched = await fetch(url);
-            let jsoned = await fetched.json();
-            setData(jsoned.DailyForecasts);
-        }
-        fetchData();
+        const get_data = async () => {
+            const fetchedData = await Api.fetchWeeklyData();
+            setData(fetchedData);
+        };
+        get_data();
     },[data])
     const getDayName = (dateString) =>{
         const date = new Date(dateString);
@@ -27,7 +26,7 @@ const WeeklyForecast = () => {
     return(
         <Container>
             {data.map(i =>{
-                return <DayDiv>
+                return <DayDiv key = {Math.random()}>
                     <div>{getDayName(i.Date)}</div>
                     <WeatherIcon src = {`${iconUrl}${i.Day.Icon}.svg`}></WeatherIcon>
                     <div>{`${i.Temperature.Maximum.Value}F`}</div>

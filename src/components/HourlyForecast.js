@@ -1,5 +1,6 @@
 import React, {useEffect , useState } from 'react';
 import styled from 'styled-components';
+import * as Api from './Api';
 
 const HourlyForecast = () => {
     const [data12hour,setData12Hour] = useState([]);
@@ -7,34 +8,27 @@ const HourlyForecast = () => {
     const tempF = currentData && currentData.Temperature && currentData.Temperature.Imperial && currentData.Temperature.Imperial.Value;
     const iconUrl = 'https://www.accuweather.com/images/weathericons/';
     useEffect (() =>{
-        const fetch12HourData = async () =>{
-            let url = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/215854?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8";
-            let fetched = await fetch(url);
-            let jsoned = await fetched.json();
-            setData12Hour(jsoned);
+        const get_data = async () => {
+            const fetched12hour = await Api.fetch12HourData();
+            setData12Hour(fetched12hour);
+            const fetchedCurrentData = await Api.fetchCurrentData();
+            setCurrentData(fetchedCurrentData);
         };
-        const fetchCurrentData = async () =>{
-            let url = 'http://dataservice.accuweather.com/currentconditions/v1/215854?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8';
-            let fetched = await fetch(url);
-            let jsoned = await fetched.json();
-            setCurrentData(jsoned[0]);
-        }
-        fetch12HourData();
-        fetchCurrentData();
-    },[currentData]);
+        get_data();
+    },[currentData,data12hour]);
     const getHour = (date) =>{
         const result = date.slice(11,13);
         return result;
     }
     return(
         <GridContainer>
-            <HourDiv>
+            <HourDiv key ={Math.random()}>
                 <div>Now</div>
                 <WeatherIcon src = {`${iconUrl}${currentData.WeatherIcon}.svg`} alt = {currentData.WeatherText}></WeatherIcon>
                 <div>{`${tempF}F`}</div>
             </HourDiv>
             {data12hour.map(i =>{
-                return <HourDiv>
+                return <HourDiv key ={Math.random()}>
                     <div>{getHour(i.DateTime)}</div>
                     <WeatherIcon src = {`${iconUrl}${i.WeatherIcon}.svg`} alt = {i.IconPhrase}></WeatherIcon>
                     <div>{`${i.Temperature.Value}F`}</div>
