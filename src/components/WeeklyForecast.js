@@ -4,7 +4,7 @@ import * as Api from './Api';
 
 const WeeklyForecast = () => {
     const [data,setData] = useState([]);
-    const iconUrl = 'https://www.accuweather.com/images/weathericons/';
+    const iconUrl = 'https://www.weatherbit.io/static/img/icons/';
     useEffect(() =>{
         const get_data = async () => {
             const fetchedData = await Api.fetchWeeklyData();
@@ -27,10 +27,10 @@ const WeeklyForecast = () => {
         <Container>
             {data.map(i =>{
                 return <DayDiv key = {Math.random()}>
-                    <div>{getDayName(i.Date)}</div>
-                    <WeatherIcon src = {`${iconUrl}${i.Day.Icon}.svg`}></WeatherIcon>
-                    <div>{`${i.Temperature.Maximum.Value}F`}</div>
-                    <MinimumDiv>{`${i.Temperature.Minimum.Value}F`}</MinimumDiv>
+                    <div>{getDayName(i.valid_date)}</div>
+                    <WeatherIcon src = {`${iconUrl}${i.weather.icon}.png`}></WeatherIcon>
+                    <div>{`${i.max_temp}F`}</div>
+                    <MinimumDiv>{`${i.min_temp}F`}</MinimumDiv>
                 </DayDiv>
             })}
         </Container>
@@ -43,7 +43,7 @@ const Container = styled.div`
     overflow: scroll;
     border: 1px solid black;
     display: grid;
-    grid-template-rows: repeat(5, 35%);
+    grid-template-rows: repeat(16, 15%);
 `;
 
 const DayDiv = styled.div`
@@ -53,7 +53,7 @@ const DayDiv = styled.div`
 
 const WeatherIcon = styled.img`
     height: 50%;
-    width: 50%;
+    width: 10%;
 `;
 
 const MinimumDiv = styled.div`
