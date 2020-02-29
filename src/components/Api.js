@@ -3,6 +3,7 @@ export async function fetchWeeklyData () {
     let response = await fetch(url);
     if(!response.ok) throw new Error('Network response was not ok');
     let jsoned = await response.json();
+    jsoned.data.shift();
     return(jsoned.data);
 }
 
