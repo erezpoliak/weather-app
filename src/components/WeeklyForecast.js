@@ -9,6 +9,7 @@ import {Sunset} from 'styled-icons/feather/Sunset';
 
 const WeeklyForecast = () => {
     const [data,setData] = useState([]);
+    const [isHidden,setHidden] = useState(true);
     const iconUrl = 'https://www.weatherbit.io/static/img/icons/';
     useEffect(() =>{
         const get_data = async () => {
@@ -28,31 +29,78 @@ const WeeklyForecast = () => {
         if(day === 5) return 'Friday';
         if(day === 6) return 'Saturday';
     }
+    const openAddInfo = (e) =>{
+        if(isHidden){
+            Container = styled.div`
+                overflow: scroll;
+                border: 1px solid black;
+                display: grid;
+                font-size: 0.85rem;
+                grid-template_rows: repeat(16,90%);
+            `
+            DayGrid = styled.div`
+            display: grid;
+            grid-template-columns: 10% 50% 10% 10%;
+            grid-template-rows: repeat(6,1fr);
+            grid-template-areas:
+                "day_name weather_icon max_temp min_temp"
+                 "wind_icon wind_text . wind_value"
+                 "moon_icon moon_text . moon_value"
+                 "sunrise_icon sunrise_text . sunrise_value"
+                 "avg_temp_icon avg_temp_text . avg_temp_value"
+                 "sunset_icon sunset_text . sunset_value";
+            justify-content: space-around;
+            `;
+            setHidden(true);
+        }
+        else {
+            Container = styled.div`
+                overflow: scroll;
+                border: 1px solid black;
+                display: grid;
+                grid-template-rows: repeat(16, 15%);
+            `
+            DayGrid = styled.div`
+                display: grid;
+                grid-template-columns: 10% 50% 10% 10%;
+                grid-template-areas:
+                "day_name weather_icon max_temp min_temp";
+                justify-content: space-around;
+                font-size: 0.85rem;
+            `;
+            setHidden(false);
+        }
+        console.log('clicked');
+    }
     return(
         <Container>
             {data.map(i =>{
-                return <DayGrid key = {Math.random()}>
+                return <DayGrid key = {Math.random()} onClick = {openAddInfo}>
                     <DayName>{getDayName(i.valid_date)}</DayName>
                     <WeatherIconWrapper>
                         <WeatherIcon src = {`${iconUrl}${i.weather.icon}.png`}></WeatherIcon>
                     </WeatherIconWrapper>
                     <MaximumDiv>{`${i.max_temp}F`}</MaximumDiv>
                     <MinimumDiv>{`${i.min_temp}F`}</MinimumDiv>
-                    <WindIcon></WindIcon>
-                    <WindText>Wind</WindText>
-                    <WindValue>66</WindValue>
-                    <MoonIcon></MoonIcon>
-                    <MoonText>Moon Phase</MoonText>
-                    <MoonValue>66</MoonValue>
-                    <SunriseIcon></SunriseIcon>
-                    <SunriseText>Sunrise</SunriseText>
-                    <SunriseValue>66</SunriseValue>
-                    <AvgTempIcon></AvgTempIcon>
-                    <AvgTempText>Avg Temp</AvgTempText>
-                    <AvgTempValue>66</AvgTempValue>
-                    <SunsetIcon></SunsetIcon>
-                    <SunsetText>Sunset</SunsetText>
-                    <SunsetValue>66</SunsetValue>
+                    {!isHidden ? (
+                        <>
+                            <WindIcon></WindIcon>
+                            <WindText>Wind</WindText>
+                            <WindValue>66</WindValue>
+                            <MoonIcon></MoonIcon>
+                            <MoonText>Moon Phase</MoonText>
+                            <MoonValue>66</MoonValue>
+                            <SunriseIcon></SunriseIcon>
+                            <SunriseText>Sunrise</SunriseText>
+                            <SunriseValue>66</SunriseValue>
+                            <AvgTempIcon></AvgTempIcon>
+                            <AvgTempText>Avg Temp</AvgTempText>
+                            <AvgTempValue>66</AvgTempValue>
+                            <SunsetIcon></SunsetIcon>
+                            <SunsetText>Sunset</SunsetText>
+                            <SunsetValue>66</SunsetValue>
+                        </>    
+                    ):(<></>)}
                 </DayGrid>
             })}
         </Container>
@@ -61,25 +109,26 @@ const WeeklyForecast = () => {
 
 export default WeeklyForecast;
 
-const Container = styled.div`
+let Container = styled.div`
     overflow: scroll;
     border: 1px solid black;
     display: grid;
-    // grid-template-rows: repeat(16, 15%);
-    grid-template_rows: repeat(16,90%);
+    grid-template-rows: repeat(16, 15%);
+    // grid-template_rows: repeat(16,90%);
+    font-size: 0.85rem;
 `;
 
-const DayGrid = styled.div`
+let DayGrid = styled.div`
     display: grid;
     grid-template-columns: 10% 50% 10% 10%;
-    grid-template-rows: repeat(6,1fr);
+    // grid-template-rows: repeat(6,1fr);
     grid-template-areas:
-        "day_name weather_icon max_temp min_temp"
-         "wind_icon wind_text . wind_value"
-         "moon_icon moon_text . moon_value"
-         "sunrise_icon sunrise_text . sunrise_value"
-         "avg_temp_icon avg_temp_text . avg_temp_value"
-         "sunset_icon sunset_text . sunset_value";
+        "day_name weather_icon max_temp min_temp";
+    //      "wind_icon wind_text . wind_value"
+    //      "moon_icon moon_text . moon_value"
+    //      "sunrise_icon sunrise_text . sunrise_value"
+    //      "avg_temp_icon avg_temp_text . avg_temp_value"
+    //      "sunset_icon sunset_text . sunset_value";
     justify-content: space-around;
 `;
 

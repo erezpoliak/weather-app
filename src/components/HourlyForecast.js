@@ -60,6 +60,6 @@ const HourDiv = styled.div`
 `;
 
 const WeatherIcon = styled.img`
-    height: 95%;
-    width: 95%;
+    height: 100%;
+    width: 100%;
 `;
