@@ -114,8 +114,8 @@ let Container = styled.div`
     border: 1px solid black;
     display: grid;
     grid-template-rows: repeat(16, 15%);
-    // grid-template_rows: repeat(16,90%);
-    font-size: 0.85rem;
+    // grid-template_rows: repeat(16,90%); 
+    font-size: 0.86rem;
 `;
 
 let DayGrid = styled.div`
