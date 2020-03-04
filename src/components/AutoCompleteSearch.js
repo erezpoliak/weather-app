@@ -1,15 +1,26 @@
-import React from 'react';
+import React , {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import * as Api from './Api';
 
 const AutoCompleteSearch = () => {
+    const [data,setData] = useState([]);
+    async function fetch_autoComplete (e) {
+      const url =
+        "https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8";
+      const search_value = e.target.value;
+      const q = "&q=";
+      const fetched_data = await fetch(url + q + search_value);
+      const jsoned = await fetched_data.json();
+      setData(jsoned);
+    };
     return(
         <Autocomplete
-      id="combo-box-demo"
-      options={top100Films}
-      getOptionLabel={option => option.title}
-      style={{ width: 300 }}
-      renderInput={params => <TextField {...params} label="Combo box" variant="outlined" />}
+      id="autocomplete search"
+      options={data}
+      getOptionLabel={option => option.LocalizedName}
+      style={{ width: 300  }}
+      renderInput={params => <TextField {...params} onChange={fetch_autoComplete}  label="" variant="outlined" />}
     />
     )
 }
