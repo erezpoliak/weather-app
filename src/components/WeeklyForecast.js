@@ -30,50 +30,63 @@ const WeeklyForecast = () => {
         if(day === 6) return 'Saturday';
     }
     const openAddInfo = (e) =>{
+        // if(isHidden){
+        //     Container = styled.div`
+        //         overflow: scroll;
+        //         border: 1px solid black;
+        //         display: grid;
+        //         font-size: 0.85rem;
+        //         grid-template_rows: repeat(16,90%);
+        //     `
+        //     DayGrid = styled.div`
+        //     display: grid;
+        //     grid-template-columns: 10% 50% 10% 10%;
+        //     grid-template-rows: repeat(6,1fr);
+        //     grid-template-areas:
+        //         "day_name weather_icon max_temp min_temp"
+        //          "wind_icon wind_text . wind_value"
+        //          "moon_icon moon_text . moon_value"
+        //          "sunrise_icon sunrise_text . sunrise_value"
+        //          "avg_temp_icon avg_temp_text . avg_temp_value"
+        //          "sunset_icon sunset_text . sunset_value";
+        //     justify-content: space-around;
+        //     `;
+        //     setHidden(false);
+        // }
+        // else {
+        //     Container = styled.div`
+        //         overflow: scroll;
+        //         border: 1px solid black;
+        //         display: grid;
+        //         grid-template-rows: repeat(16, 15%);
+        //     `
+        //     DayGrid = styled.div`
+        //         display: grid;
+        //         grid-template-columns: 10% 50% 10% 10%;
+        //         grid-template-areas:
+        //         "day_name weather_icon max_temp min_temp";
+        //         justify-content: space-around;
+        //         font-size: 0.85rem;
+        //     `;
+        //     setHidden(true);
+        // }
+        console.log('clicked');
         if(isHidden){
-            Container = styled.div`
-                overflow: scroll;
-                border: 1px solid black;
-                display: grid;
-                font-size: 0.85rem;
-                grid-template_rows: repeat(16,90%);
-            `
-            DayGrid = styled.div`
-            display: grid;
-            grid-template-columns: 10% 50% 10% 10%;
-            grid-template-rows: repeat(6,1fr);
-            grid-template-areas:
-                "day_name weather_icon max_temp min_temp"
-                 "wind_icon wind_text . wind_value"
-                 "moon_icon moon_text . moon_value"
-                 "sunrise_icon sunrise_text . sunrise_value"
-                 "avg_temp_icon avg_temp_text . avg_temp_value"
-                 "sunset_icon sunset_text . sunset_value";
-            justify-content: space-around;
-            `;
-            setHidden(true);
-        }
-        else {
-            Container = styled.div`
-                overflow: scroll;
-                border: 1px solid black;
-                display: grid;
-                grid-template-rows: repeat(16, 15%);
-            `
-            DayGrid = styled.div`
-                display: grid;
-                grid-template-columns: 10% 50% 10% 10%;
-                grid-template-areas:
-                "day_name weather_icon max_temp min_temp";
-                justify-content: space-around;
-                font-size: 0.85rem;
-            `;
+            const tempContainer = HiddenContainer;
+            HiddenContainer = Container;
+            Container = tempContainer;
             setHidden(false);
         }
-        console.log('clicked');
+        else {
+            const tempContainer = HiddenContainer;
+            HiddenContainer = Container;
+            Container = tempContainer;
+            setHidden(true);
+        }
+        console.log('isHidden = '+isHidden);
     }
     return(
-        <Container>
+        <HiddenContainer>
             {data.map(i =>{
                 return <DayGrid key = {Math.random()} onClick = {openAddInfo}>
                     <DayName>{getDayName(i.valid_date)}</DayName>
@@ -83,63 +96,65 @@ const WeeklyForecast = () => {
                     <MaximumDiv>{`${i.max_temp}F`}</MaximumDiv>
                     <MinimumDiv>{`${i.min_temp}F`}</MinimumDiv>
                     {!isHidden ? (
-                        <>
+                        <React.Fragment>
                             <WindIcon></WindIcon>
-                            <WindText>Wind</WindText>
-                            <WindValue>66</WindValue>
+                            <MoreInfoDiv>Wind</MoreInfoDiv>
+                            <MoreInfoDiv></MoreInfoDiv>
+                            <MoreInfoDiv>66</MoreInfoDiv>
                             <MoonIcon></MoonIcon>
-                            <MoonText>Moon Phase</MoonText>
-                            <MoonValue>66</MoonValue>
+                            <MoreInfoDiv>Moon Phase</MoreInfoDiv>
+                            <MoreInfoDiv></MoreInfoDiv>
+                            <MoreInfoDiv>66</MoreInfoDiv>
                             <SunriseIcon></SunriseIcon>
-                            <SunriseText>Sunrise</SunriseText>
-                            <SunriseValue>66</SunriseValue>
+                            <MoreInfoDiv>Sunrise</MoreInfoDiv>
+                            <MoreInfoDiv></MoreInfoDiv>
+                            <MoreInfoDiv>66</MoreInfoDiv>
                             <AvgTempIcon></AvgTempIcon>
-                            <AvgTempText>Avg Temp</AvgTempText>
-                            <AvgTempValue>66</AvgTempValue>
+                            <MoreInfoDiv>Avg Temp</MoreInfoDiv>
+                            <MoreInfoDiv></MoreInfoDiv>
+                            <MoreInfoDiv>66</MoreInfoDiv>
                             <SunsetIcon></SunsetIcon>
-                            <SunsetText>Sunset</SunsetText>
-                            <SunsetValue>66</SunsetValue>
-                        </>    
-                    ):(<></>)}
+                            <MoreInfoDiv>Sunset</MoreInfoDiv>
+                            <MoreInfoDiv></MoreInfoDiv>
+                            <MoreInfoDiv>66</MoreInfoDiv>
+                        </React.Fragment>    
+                    ):(<React.Fragment></React.Fragment>)}
                 </DayGrid>
             })}
-        </Container>
+        </HiddenContainer>
     )
 }
 
 export default WeeklyForecast;
 
+let HiddenContainer = styled.div`
+    overflow: scroll;
+    border: 1px solid black;
+    display: grid;
+    grid-template_rows: repeat(16 , 15%);
+    font-size: 0.86rem;
+`;
+
 let Container = styled.div`
     overflow: scroll;
     border: 1px solid black;
     display: grid;
-    grid-template-rows: repeat(16, 15%);
-    // grid-template_rows: repeat(16,90%); 
+    grid-template_rows: repeat(16 , 90%);
     font-size: 0.86rem;
 `;
 
-let DayGrid = styled.div`
+const DayGrid = styled.div`
     display: grid;
     grid-template-columns: 10% 50% 10% 10%;
-    // grid-template-rows: repeat(6,1fr);
-    grid-template-areas:
-        "day_name weather_icon max_temp min_temp";
-    //      "wind_icon wind_text . wind_value"
-    //      "moon_icon moon_text . moon_value"
-    //      "sunrise_icon sunrise_text . sunrise_value"
-    //      "avg_temp_icon avg_temp_text . avg_temp_value"
-    //      "sunset_icon sunset_text . sunset_value";
+    // grid-template-rows: ${isHidden => isHidden ? 'none' : 'repeat(6,1fr)'};
     justify-content: space-around;
 `;
 
-const DayName = styled.div`
-    grid-area: day_name;
-`;
+const DayName = styled.div``;
 
 const WeatherIconWrapper = styled.div`
     display: flex;
     justify-content: center;
-    grid-area: weather_icon;
 `;
 
 const WeatherIcon = styled.img`
@@ -148,72 +163,37 @@ const WeatherIcon = styled.img`
 
 const MinimumDiv = styled.div`
     opacity: 0.6;
-    grid-area: min_temp;
 `;
 
-const MaximumDiv = styled.div`
-    grid-area: max_temp;
+const MaximumDiv = styled.div``;
+
+const MoreInfoDiv = styled.div`
+    // display: ${isHidden => isHidden ? 'none' : 'block'};
 `;
+
 
 const WindIcon = styled(Wind)`
-    grid-area: wind_icon;
-`;
-
-const WindText = styled.div`
-    grid-area: wind_text;
-`;
-
-const WindValue = styled.div`
-    grid-area: wind_value;
+    // display: ${isHidden => isHidden ? 'none' : 'block'};
 `;
 
 const MoonIcon = styled(Moon)`
-    grid-area: moon_icon;
+    // display: ${isHidden => isHidden ? 'none' : 'block'};
 `;
 
-const MoonText = styled.div`
-    grid-area: moon_text;
-`;
-
-const MoonValue = styled.div`
-    grid-area: moon_value;
-`;
 
 const SunriseIcon = styled(Sunrise)`
-    grid-area: sunrise_icon;
+    // display: ${isHidden => isHidden ? 'none' : 'block'};
 `;
 
-const SunriseText = styled.div`
-    grid-area: sunrise_text;
-`;
-
-const SunriseValue = styled.div`
-    grid-area: sunrise_value;
-`;
 
 const AvgTempIcon = styled(TemperatureLow)`
-    grid-area: avg_temp_icon;
-`;
-
-const AvgTempText = styled.div`
-    grid-area: avg_temp_text;
-`;
-
-const AvgTempValue = styled.div`
-    grid-area: avg_temp_value;
+    // display: ${isHidden => isHidden ? 'none' : 'block'};
 `;
 
 const SunsetIcon = styled(Sunset)`
-    grid-area: sunset_icon;
+    // display: ${isHidden => isHidden ? 'none' : 'block'};
 `;
 
-const SunsetText = styled.div`
-    grid-area: sunset_text;
-`;
-
-const SunsetValue = styled.div`
-    grid-area: sunset_value;
-`;
 
 
 
