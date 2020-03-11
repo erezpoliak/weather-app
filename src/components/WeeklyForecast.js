@@ -1,23 +1,16 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
-import * as Api from './Api';
 import {Wind} from 'styled-icons/boxicons-regular/Wind';
 import {Moon} from 'styled-icons/fa-solid/Moon';
 import {Sunrise} from 'styled-icons/feather/Sunrise';
 import {TemperatureLow} from 'styled-icons/fa-solid/TemperatureLow';
 import {Sunset} from 'styled-icons/feather/Sunset';
+import {Forecast_Context} from './Context';
 
 const WeeklyForecast = () => {
-    const [data,setData] = useState([]);
+    const {weeklyData} = useContext(Forecast_Context);
     const [isHidden,setHidden] = useState(true);
     const iconUrl = 'https://www.weatherbit.io/static/img/icons/';
-    useEffect(() =>{
-        const get_data = async () => {
-            const fetchedData = await Api.fetchWeeklyData();
-            setData(fetchedData);
-        };
-        get_data();
-    },[data])
     const getDayName = (dateString) =>{
         const date = new Date(dateString);
         const day = date.getDay();
@@ -83,40 +76,43 @@ const WeeklyForecast = () => {
             Container = tempContainer;
             setHidden(true);
         }
-        console.log('isHidden = '+isHidden);
+    }
+    const getTime = utc => {
+        var date = new Date(utc);
+        return date.toString()
     }
     return(
         <HiddenContainer>
-            {data.map(i =>{
+            {weeklyData.map(i =>{
                 return <DayGrid key = {Math.random()} onClick = {openAddInfo}>
                     <DayName>{getDayName(i.valid_date)}</DayName>
                     <WeatherIconWrapper>
                         <WeatherIcon src = {`${iconUrl}${i.weather.icon}.png`}></WeatherIcon>
                     </WeatherIconWrapper>
-                    <MaximumDiv>{`${i.max_temp}F`}</MaximumDiv>
-                    <MinimumDiv>{`${i.min_temp}F`}</MinimumDiv>
+                    <MaximumDiv>{`${Math.round(i.max_temp)}F`}</MaximumDiv>
+                    <MinimumDiv>{`${Math.round(i.min_temp)}F`}</MinimumDiv>
                     {!isHidden ? (
                         <React.Fragment>
                             <WindIcon></WindIcon>
                             <MoreInfoDiv>Wind</MoreInfoDiv>
                             <MoreInfoDiv></MoreInfoDiv>
-                            <MoreInfoDiv>66</MoreInfoDiv>
+                            <MoreInfoDiv>{`${i.wind_cdir} ${i.wind_spd}m/s`}</MoreInfoDiv>
                             <MoonIcon></MoonIcon>
                             <MoreInfoDiv>Moon Phase</MoreInfoDiv>
                             <MoreInfoDiv></MoreInfoDiv>
-                            <MoreInfoDiv>66</MoreInfoDiv>
+                            <MoreInfoDiv>{Math.round(i.moon_phase * 10)/10}</MoreInfoDiv>
                             <SunriseIcon></SunriseIcon>
                             <MoreInfoDiv>Sunrise</MoreInfoDiv>
                             <MoreInfoDiv></MoreInfoDiv>
-                            <MoreInfoDiv>66</MoreInfoDiv>
+                            <MoreInfoDiv>{getTime(i.sunrise_ts)}</MoreInfoDiv>
                             <AvgTempIcon></AvgTempIcon>
                             <MoreInfoDiv>Avg Temp</MoreInfoDiv>
                             <MoreInfoDiv></MoreInfoDiv>
-                            <MoreInfoDiv>66</MoreInfoDiv>
+                            <MoreInfoDiv>{`${Math.round(i.temp)}F`}</MoreInfoDiv>
                             <SunsetIcon></SunsetIcon>
                             <MoreInfoDiv>Sunset</MoreInfoDiv>
                             <MoreInfoDiv></MoreInfoDiv>
-                            <MoreInfoDiv>66</MoreInfoDiv>
+                            <MoreInfoDiv>{getTime(i.sunset_ts)}</MoreInfoDiv>
                         </React.Fragment>    
                     ):(<React.Fragment></React.Fragment>)}
                 </DayGrid>

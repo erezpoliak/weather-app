@@ -1,21 +1,14 @@
-import React, {useEffect , useState } from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
-import * as Api from './Api';
+import {Forecast_Context} from './Context';
 
 const HourlyForecast = () => {
-    const [data12hour,setData12Hour] = useState([]);
-    const [currentData , setCurrentData] = useState({});
-    const tempF = currentData && currentData.Temperature && currentData.Temperature.Imperial && currentData.Temperature.Imperial.Value;
-    const iconUrl = 'https://www.accuweather.com/images/weathericons/';
-    useEffect (() =>{
-        const get_data = async () => {
-            const fetched12hour = await Api.fetch12HourData();
-            setData12Hour(fetched12hour);
-            const fetchedCurrentData = await Api.fetchCurrentData();
-            setCurrentData(fetchedCurrentData);
-        };
-        get_data();
-    },[currentData,data12hour]);
+    const {data12hour , currentData} = useContext(Forecast_Context);
+    const currentTemp = currentData && currentData.temp;
+    const bitIcon = currentData && currentData.weather && currentData.weather.icon;
+    const bitDescription = currentData && currentData.weather && currentData.weather.description;
+    const iconUrlAcuu = 'https://www.accuweather.com/images/weathericons/';
+    const iconUrlBit = 'https://www.weatherbit.io/static/img/icons/';
     const getHour = (date) =>{
         const result = date.slice(11,13);
         return result;
@@ -24,13 +17,13 @@ const HourlyForecast = () => {
         <GridContainer>
             <HourDiv key ={Math.random()}>
                 <div>Now</div>
-                <WeatherIcon src = {`${iconUrl}${currentData.WeatherIcon}.svg`} alt = {currentData.WeatherText}></WeatherIcon>
-                <div>{`${tempF}F`}</div>
+                <WeatherIconBit src = {`${iconUrlBit}${bitIcon}.png`} alt = {bitDescription}></WeatherIconBit>
+                <div>{`${currentTemp}F`}</div>
             </HourDiv>
             {data12hour.map(i =>{
                 return <HourDiv key ={Math.random()}>
                     <div>{getHour(i.DateTime)}</div>
-                    <WeatherIcon src = {`${iconUrl}${i.WeatherIcon}.svg`} alt = {i.IconPhrase}></WeatherIcon>
+                    <WeatherIconAcuu src = {`${iconUrlAcuu}${i.WeatherIcon}.svg`} alt = {i.IconPhrase}></WeatherIconAcuu>
                     <div>{`${i.Temperature.Value}F`}</div>
                 </HourDiv>
             })}
@@ -59,7 +52,11 @@ const HourDiv = styled.div`
     margin: 15%;
 `;
 
-const WeatherIcon = styled.img`
+const WeatherIconAcuu = styled.img`
     height: 100%;
     width: 100%;
+`;
+
+const WeatherIconBit = styled.img`
+    width: 15%;
 `;

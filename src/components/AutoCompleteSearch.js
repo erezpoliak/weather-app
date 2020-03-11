@@ -1,7 +1,7 @@
 import React , {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import * as Api from './Api';
+import {Forecast_Context} from './Context';
 
 const AutoCompleteSearch = () => {
     const [data,setData] = useState([]);
@@ -19,7 +19,7 @@ const AutoCompleteSearch = () => {
       id="autocomplete search"
       options={data}
       getOptionLabel={option => option.LocalizedName}
-      style={{ width: 300  }}
+      style={{ width: 100  }}
       renderInput={params => <TextField {...params} onChange={fetch_autoComplete}  label="" variant="outlined" />}
     />
     )

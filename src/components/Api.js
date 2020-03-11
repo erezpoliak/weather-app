@@ -1,25 +1,37 @@
 export async function fetchWeeklyData () {
-    let url = 'https://api.weatherbit.io/v2.0/forecast/daily?city=Tel+Aviv&key=83a2229fd615410fb7a980aa86e4064a&units=I';
-    let response = await fetch(url);
-    if(!response.ok) throw new Error('Network response was not ok');
-    let jsoned = await response.json();
-    jsoned.data.shift();
-    return(jsoned.data);
+    try{
+        let url = 'https://api.weatherbit.io/v2.0/forecast/daily?city=Tel+Aviv&key=83a2229fd615410fb7a980aa86e4064a&units=I';
+        let response = await fetch(url);
+        let jsoned = await response.json();
+        jsoned.data.shift();
+        return(jsoned.data);
+    }
+    catch(error){
+        console.error(error);
+    }
 }
 
 export async function fetch12HourData () {
-    let url = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/215854?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8";
-    let response = await fetch(url);
-    if(!response.ok) throw new Error('Network response was not ok');
-    let jsoned = await response.json();
-    return jsoned;
+    try{
+        let url = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/215854?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8";
+        let response = await fetch(url);
+        let jsoned = await response.json();
+        return jsoned;
+    }
+    catch(error){
+        console.error(error);
+    }
 };
 export async function fetchCurrentData () {
-    let url = 'http://dataservice.accuweather.com/currentconditions/v1/215854?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8';
-    let response = await fetch(url);
-    if(!response.ok) throw new Error('Network response was not ok');
-    let jsoned = await response.json();
-    return(jsoned[0]);
+    try{
+        let url = 'https://api.weatherbit.io/v2.0/current?city=tel+aviv&key=83a2229fd615410fb7a980aa86e4064a&units=I';
+        let response = await fetch(url);
+        let jsoned = await response.json();
+        return(jsoned.data[0]);
+    }
+    catch(error){
+        console.error(error);
+    }
 }
 
 // export async function fetch_autoComplete (e) {
