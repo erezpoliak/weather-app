@@ -8,7 +8,7 @@ const TempToggle = () => {
     const [isF , set_isF] = useState(true);
     const {hourleyTemp , setHourleyTemp , currentTemp , setCurrentTemp} = useContext(Forecast_Context);
 
-    const changeTemp = (e) => {
+    function changeTemp (e) {
         if(isF){
             set_isF(false);
             const temporaryCurrent = Math.round((currentTemp - 32) * 5 / 9);

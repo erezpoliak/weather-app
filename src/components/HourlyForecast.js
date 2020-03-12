@@ -17,8 +17,10 @@ const HourlyForecast = () => {
         <GridContainer>
             <HourDiv key ={Math.random()}>
                 <div>Now</div>
-                <WeatherIconBit src = {`${iconUrlBit}${bitIcon}.png`} alt = {bitDescription}></WeatherIconBit>
-                <div>{`${currentTemp}F`}</div>
+                {/* <WeatherIconBit src = {`${iconUrlBit}${bitIcon}.png`} alt = {bitDescription}></WeatherIconBit>
+                <div>{`${currentTemp}F`}</div> */}
+                <WeatherIconBit></WeatherIconBit>
+                <div>current temp</div>
             </HourDiv>
             {data12hour.map((i , index) =>{
                 return <HourDiv key ={Math.random()}>
