@@ -63,7 +63,6 @@ const WeeklyForecast = () => {
         //     `;
         //     setHidden(true);
         // }
-        console.log('clicked');
         if(isHidden){
             const tempContainer = HiddenContainer;
             HiddenContainer = Container;

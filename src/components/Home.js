@@ -9,7 +9,7 @@ const Home = () => {
         <Grid>
               <Header></Header>
               <HourlyForecast></HourlyForecast>
-              <WeeklyForecast></WeeklyForecast>
+              {/* <WeeklyForecast></WeeklyForecast> */}
         </Grid>
     );
 };

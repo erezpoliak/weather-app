@@ -9,6 +9,8 @@ const Forecast_Provider = ({children}) => {
     const [data12hour , setData12hour] = useState([]);
     const [currentData , setCurrentData] = useState({});
     const [weeklyData , setWeeklyData] = useState([]);
+    const [hourleyTemp , setHourleyTemp] = useState([]);
+    const [currentTemp , setCurrentTemp] = useState(null);
     useEffect(() =>{
         const getData = async () => {
             // const fetchedAutoComplete = await Api.fetch_autoComplete;
@@ -21,20 +23,37 @@ const Forecast_Provider = ({children}) => {
             setWeeklyData(fetchedWeekly);
         }
         getData();
-    },[data12hour,currentData,weeklyData])
+        
+        const getHourleyTemps = (data12hour) =>{
+            let result = [];
+            for(let i of data12hour){
+                result.push(i.Temperature.Value);
+            }
+            setHourleyTemp(result);
+        }
+        getHourleyTemps(data12hour);
+
+        const temporaryCurrentTemp = currentData && currentData.temp;
+        setCurrentTemp(temporaryCurrentTemp);
+    },[data12hour, currentData, weeklyData])
+
 
     const state = {
         // autoCompleteData ,
         data12hour ,
         currentData ,
-        weeklyData
+        weeklyData ,
+        hourleyTemp ,
+        currentTemp
     };
 
     const actions = {
         // setAutoCompleteData ,
         setData12hour ,
         setCurrentData ,
-        setWeeklyData
+        setWeeklyData ,
+        setHourleyTemp ,
+        setCurrentTemp
     };
 
     return <Provider value={{ ...state, ...actions }}>{children}</Provider>;

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import {Forecast_Context} from './Context';
 
 const HourlyForecast = () => {
-    const {data12hour , currentData} = useContext(Forecast_Context);
-    const currentTemp = currentData && currentData.temp;
+    const {data12hour , currentData , hourleyTemp , currentTemp} = useContext(Forecast_Context);
+    // const currentTemp = currentData && currentData.temp;
     const bitIcon = currentData && currentData.weather && currentData.weather.icon;
     const bitDescription = currentData && currentData.weather && currentData.weather.description;
     const iconUrlAcuu = 'https://www.accuweather.com/images/weathericons/';
@@ -20,11 +20,11 @@ const HourlyForecast = () => {
                 <WeatherIconBit src = {`${iconUrlBit}${bitIcon}.png`} alt = {bitDescription}></WeatherIconBit>
                 <div>{`${currentTemp}F`}</div>
             </HourDiv>
-            {data12hour.map(i =>{
+            {data12hour.map((i , index) =>{
                 return <HourDiv key ={Math.random()}>
                     <div>{getHour(i.DateTime)}</div>
                     <WeatherIconAcuu src = {`${iconUrlAcuu}${i.WeatherIcon}.svg`} alt = {i.IconPhrase}></WeatherIconAcuu>
-                    <div>{`${i.Temperature.Value}F`}</div>
+                    <div>{`${hourleyTemp[index]}F`}</div>
                 </HourDiv>
             })}
             </GridContainer>
