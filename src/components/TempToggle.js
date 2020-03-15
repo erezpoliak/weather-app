@@ -1,48 +1,28 @@
-import React , {useState , useContext} from 'react';
-import Toggle from 'react-toggle'
+import React, { useContext } from "react";
+import Toggle from "react-toggle";
 import "react-toggle/style.css";
-import {Forecast_Context} from './Context';
+import { Forecast_Context } from "./Context";
 
 const TempToggle = () => {
-    
-    const [isF , set_isF] = useState(true);
-    const {hourleyTemp , setHourleyTemp , currentTemp , setCurrentTemp} = useContext(Forecast_Context);
+  const { method, setMethod } = useContext(Forecast_Context);
 
-    function changeTemp (e) {
-        if(isF){
-            set_isF(false);
-            const temporaryCurrent = Math.round((currentTemp - 32) * 5 / 9);
-            setCurrentTemp(temporaryCurrent);
-            const temporaryHourley = [...hourleyTemp];
-            for(let i=0; i<temporaryHourley.length; i++){
-                temporaryHourley[i] = Math.round((temporaryHourley[i] - 32) * 5 / 9);
-            }
-            setHourleyTemp(temporaryHourley);
-        }
-        else{
-            set_isF(true);
-            const temporaryCurrent = Math.round(currentTemp / 5 * 9 + 32);
-            setCurrentTemp(temporaryCurrent);
-            const temporaryHourley = [...hourleyTemp];
-            for(let i=0; i<temporaryHourley.length; i++){
-                temporaryHourley[i] = Math.round(temporaryHourley[i] / 5 * 9 + 32);
-            }
-            setHourleyTemp(temporaryHourley);
-        }
-    }
+  const changeToggle = e => {
+    if (method === "F") setMethod("C");
+    else setMethod("F");
+  };
 
-    return(
-        <label>
-  <Toggle
-    defaultChecked={false}
-    icons={{
-        checked: 'C' ,
-        unchecked: 'F'
-    }}
-    onChange={changeTemp} 
-    />
-</label>
-    )
-}
+  return (
+    <label>
+      <Toggle
+        defaultChecked={true}
+        icons={{
+          checked: "F",
+          unchecked: "C"
+        }}
+        onChange={changeToggle}
+      />
+    </label>
+  );
+};
 
 export default TempToggle;
