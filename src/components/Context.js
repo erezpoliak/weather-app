@@ -10,25 +10,22 @@ const Forecast_Provider = ({ children }) => {
   const [currentData, setCurrentData] = useState({});
   const [weeklyData, setWeeklyData] = useState([]);
   const [method, setMethod] = useState("F");
-  useEffect(
-    () => {
-      const getData = async () => {
-        // const fetchedAutoComplete = await Api.fetch_autoComplete;
-        // setAutoCompleteData(fetchedAutoComplete);
-        const fetched12hour = await Api.fetch12HourData();
-        setData12hour(fetched12hour);
-        const fetchedCurrent = await Api.fetchCurrentData();
-        setCurrentData(fetchedCurrent);
-        const fetchedWeekly = await Api.fetchWeeklyData();
-        setWeeklyData(fetchedWeekly);
-      };
-      getData();
-      console.log("api called");
-    },
-    [
-      // cityName
-    ]
-  );
+  const [cityName, setCityName] = useState("tel+aviv");
+  const [cityKey, setCityKey] = useState("215854");
+  useEffect(() => {
+    const getData = async () => {
+      // const fetchedAutoComplete = await Api.fetch_autoComplete;
+      // setAutoCompleteData(fetchedAutoComplete);
+      const fetched12hour = await Api.fetch12HourData(cityKey);
+      setData12hour(fetched12hour);
+      const fetchedCurrent = await Api.fetchCurrentData(cityName);
+      setCurrentData(fetchedCurrent);
+      const fetchedWeekly = await Api.fetchWeeklyData(cityName);
+      setWeeklyData(fetchedWeekly);
+    };
+    getData();
+    console.log("api called");
+  }, [cityName, cityKey]);
 
   const state = {
     // autoCompleteData ,
@@ -43,7 +40,9 @@ const Forecast_Provider = ({ children }) => {
     setData12hour,
     setCurrentData,
     setWeeklyData,
-    setMethod
+    setMethod,
+    setCityName,
+    setCityKey
   };
 
   return <Provider value={{ ...state, ...actions }}>{children}</Provider>;

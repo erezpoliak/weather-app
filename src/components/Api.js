@@ -1,7 +1,6 @@
-export async function fetchWeeklyData() {
+export async function fetchWeeklyData(cityName) {
   try {
-    const url =
-      "https://api.weatherbit.io/v2.0/forecast/daily?city=Tel+Aviv&key=83a2229fd615410fb7a980aa86e4064a&units=I";
+    const url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${cityName}&key=83a2229fd615410fb7a980aa86e4064a&units=I`;
     const response = await fetch(url);
     const jsoned = await response.json();
     jsoned.data.shift();
@@ -11,10 +10,9 @@ export async function fetchWeeklyData() {
   }
 }
 
-export async function fetch12HourData() {
+export async function fetch12HourData(cityKey) {
   try {
-    const url =
-      "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/215854?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8";
+    const url = `http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${cityKey}?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8`;
     const response = await fetch(url);
     const jsoned = await response.json();
     return jsoned;
@@ -22,10 +20,9 @@ export async function fetch12HourData() {
     console.error(error);
   }
 }
-export async function fetchCurrentData() {
+export async function fetchCurrentData(cityName) {
   try {
-    const url =
-      "https://api.weatherbit.io/v2.0/current?city=tel+aviv&key=83a2229fd615410fb7a980aa86e4064a&units=I";
+    const url = `https://api.weatherbit.io/v2.0/current?city=${cityName}&key=83a2229fd615410fb7a980aa86e4064a&units=I`;
     const response = await fetch(url);
     const jsoned = await response.json();
     return jsoned.data[0];

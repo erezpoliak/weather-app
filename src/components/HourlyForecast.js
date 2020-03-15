@@ -8,9 +8,6 @@ const HourlyForecast = () => {
   const [currentTemp, set_currentTemp] = useState({ method: "F", temp: null });
   const [temp12, set_temp12] = useState({ method: "F", tempArr: [] });
   useEffect(() => {
-    // data12hour.map(i => {
-    //   new_temp12.tempArr.push(i.Temperature.Value);
-    // });
     const new_tempArr = data12hour.map(i => {
       return i.Temperature.Value;
     });
@@ -28,9 +25,6 @@ const HourlyForecast = () => {
     set_currentTemp(new_temp);
   }
   if (method !== temp12.method) {
-    // temp12.tempArr.map(i => {
-    //   new12temp.tempArr.push(Utility.convertTemp(i, temp12.method));
-    // });
     const new_arr = temp12.tempArr.map(i => {
       return Utility.convertTemp(i, temp12.method);
     });

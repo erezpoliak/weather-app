@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import HourlyForecast from "./HourlyForecast";
 import WeeklyForecast from "./WeeklyForecast";
+import { Forecast_Context } from "./Context";
+import * as Utility from "./Utility";
 
 const Home = () => {
   return (
