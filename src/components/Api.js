@@ -31,6 +31,23 @@ export async function fetchCurrentData(cityName) {
   }
 }
 
+export async function fetchAnnualData(stationId) {
+  const url = `https://api.meteostat.net/v1/climate/normals?station=${stationId}&key=jU3rqVLK`;
+  const fetched = await fetch(url);
+  const fetched_json = await fetched.json();
+  const result =
+    fetched_json && fetched_json.data && fetched_json.data.temperature;
+  return result;
+}
+
+export async function fetchYearData(stationId, start, end) {
+  const url = `https://api.meteostat.net/v1/history/monthly?station=${stationId}&start=${start}&end=${end}&key=jU3rqVLK`;
+  const fetched = await fetch(url);
+  const fetched_json = await fetched.json();
+  const result = fetched_json.data;
+  return result;
+}
+
 // export async function fetch_autoComplete (e) {
 //     const url =
 //       "https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8";
