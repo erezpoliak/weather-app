@@ -48,7 +48,6 @@ const YearChart = () => {
     const labelArr = [year - 3, year - 2, year - 1];
 
     const chartCtx = chartRef.current.getContext("2d");
-    console.log(avgYears);
 
     new Chart(chartCtx, {
       type: "doughnut",

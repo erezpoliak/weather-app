@@ -82,8 +82,11 @@ const WeeklyForecast = () => {
     const date = new Date(utc * 1000);
     let stringDate = date.toTimeString();
     stringDate = stringDate.split("G");
-    const result = stringDate[0].split(" ");
-    return result[0];
+    let result = stringDate[0].split(" ");
+    result = result[0];
+    let Arr = result.split("");
+    Arr.splice(-3, 3);
+    return [...Arr];
   };
 
   return (
@@ -109,19 +112,27 @@ const WeeklyForecast = () => {
             </MinimumDiv>
             {!isHidden ? (
               <React.Fragment>
-                <WindIcon></WindIcon>
+                <MoreInfoDiv>
+                  <WindIcon></WindIcon>
+                </MoreInfoDiv>
                 <MoreInfoDiv>Wind</MoreInfoDiv>
-                <MoreInfoDiv></MoreInfoDiv>
-                <MoreInfoDiv>{`${i.wind_cdir} ${i.wind_spd}m/s`}</MoreInfoDiv>
-                <MoonIcon></MoonIcon>
+                <MoreInfoDiv>{i.wind_cdir}</MoreInfoDiv>
+                <MoreInfoDiv>{`${i.wind_spd}ms`}</MoreInfoDiv>
+                <MoreInfoDiv>
+                  <MoonIcon></MoonIcon>
+                </MoreInfoDiv>
                 <MoreInfoDiv>Moon Phase</MoreInfoDiv>
                 <MoreInfoDiv></MoreInfoDiv>
                 <MoreInfoDiv>{Math.round(i.moon_phase * 10) / 10}</MoreInfoDiv>
-                <SunriseIcon></SunriseIcon>
+                <MoreInfoDiv>
+                  <SunriseIcon></SunriseIcon>
+                </MoreInfoDiv>
                 <MoreInfoDiv>Sunrise</MoreInfoDiv>
                 <MoreInfoDiv></MoreInfoDiv>
                 <MoreInfoDiv>{getTime(i.sunrise_ts)}</MoreInfoDiv>
-                <AvgTempIcon></AvgTempIcon>
+                <MoreInfoDiv>
+                  <AvgTempIcon></AvgTempIcon>
+                </MoreInfoDiv>
                 <MoreInfoDiv>Avg Temp</MoreInfoDiv>
                 <MoreInfoDiv></MoreInfoDiv>
                 <MoreInfoDiv>
@@ -129,7 +140,9 @@ const WeeklyForecast = () => {
                     ? avgTemp.tempArr[index]
                     : ""}
                 </MoreInfoDiv>
-                <SunsetIcon></SunsetIcon>
+                <MoreInfoDiv>
+                  <SunsetIcon></SunsetIcon>
+                </MoreInfoDiv>
                 <MoreInfoDiv>Sunset</MoreInfoDiv>
                 <MoreInfoDiv></MoreInfoDiv>
                 <MoreInfoDiv>{getTime(i.sunset_ts)}</MoreInfoDiv>
@@ -152,6 +165,7 @@ let HiddenContainer = styled.div`
   display: grid;
   grid-template_rows: repeat(16, 15%);
   font-size: 0.86rem;
+  max-width: 100vw;
 `;
 
 let Container = styled.div`
@@ -160,12 +174,14 @@ let Container = styled.div`
   display: grid;
   grid-template_rows: repeat(16, 90%);
   font-size: 0.86rem;
+  max-width: 100vw;
 `;
 
 const DayGrid = styled.div`
   display: grid;
   grid-template-columns: 10% 50% 10% 10%;
   justify-content: space-around;
+  max-width: 100vw;
 `;
 
 const DayName = styled.div``;
@@ -176,7 +192,8 @@ const WeatherIconWrapper = styled.div`
 `;
 
 const WeatherIcon = styled.img`
-  width: 22%;
+  width: 12%;
+  height: 12%;
 `;
 
 const MinimumDiv = styled.div`
@@ -185,14 +202,36 @@ const MinimumDiv = styled.div`
 
 const MaximumDiv = styled.div``;
 
-const MoreInfoDiv = styled.div``;
+const MoreInfoDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4.2%;
+  margin-bottom: 4.2%;
+  max-width: 100vw;
+`;
 
-const WindIcon = styled(Wind)``;
+const WindIcon = styled(Wind)`
+  width: 50%;
+  height: 50%;
+`;
 
-const MoonIcon = styled(Moon)``;
+const MoonIcon = styled(Moon)`
+  width: 50%;
+  height: 50%;
+`;
 
-const SunriseIcon = styled(Sunrise)``;
+const SunriseIcon = styled(Sunrise)`
+  width: 50%;
+  height: 50%;
+`;
 
-const AvgTempIcon = styled(TemperatureLow)``;
+const AvgTempIcon = styled(TemperatureLow)`
+  width: 50%;
+  height: 50%;
+`;
 
-const SunsetIcon = styled(Sunset)``;
+const SunsetIcon = styled(Sunset)`
+  width: 50%;
+  height: 50%;
+`;

@@ -49,7 +49,7 @@ const HourlyForecast = () => {
           src={`${iconUrlBit}${bitIcon}.png`}
           alt={bitDescription}
         ></WeatherIconBit>
-        <div>{currentTemp.temp}</div>
+        <div>{Math.round(currentTemp.temp)}</div>
       </HourDiv>
       {data12hour.map((i, index) => {
         return (

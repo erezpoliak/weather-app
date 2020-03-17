@@ -27,5 +27,6 @@ const GlobalStyle = createGlobalStyle`
    font-family: sans-serif;
    font-size: 10px;
    height: 100%;
+   max-width: 100%;
  }
 `;

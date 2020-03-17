@@ -4,6 +4,7 @@ import Header from "./Header";
 import HourlyForecast from "./HourlyForecast";
 import WeeklyForecast from "./WeeklyForecast";
 import { Forecast_Context } from "./Context";
+import Div100vh from "react-div-100vh";
 
 const Home = () => {
   const { currentData } = useContext(Forecast_Context);
@@ -32,11 +33,14 @@ const Home = () => {
   wallpaper(description);
 
   return (
-    <Grid>
-      <Header></Header>
-      <HourlyForecast></HourlyForecast>
-      <WeeklyForecast></WeeklyForecast>
-    </Grid>
+    <Div100vh>
+      <Grid>
+        <Header></Header>
+        {/* <HourlyForecast></HourlyForecast> */}
+        <div></div>
+        <WeeklyForecast></WeeklyForecast>
+      </Grid>
+    </Div100vh>
   );
 };
 
@@ -45,7 +49,7 @@ export default Home;
 let Grid = styled.div`
   display: grid;
   height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
   grid-template-rows: 2fr 1fr 2fr;
   background-image: url("/imgs/clear-sky.jpg");
   background-position: center;
@@ -57,7 +61,7 @@ let Grid = styled.div`
 const GridThunder = styled.div`
   display: grid;
   height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
   grid-template-rows: 2fr 1fr 2fr;
   background-image: url("/imgs/thunderstorm.jpg")
   background-position: center;
@@ -69,7 +73,7 @@ const GridThunder = styled.div`
 const GridRain = styled.div`
   display: grid;
   height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
   grid-template-rows: 2fr 1fr 2fr;
   background-image: url("/imgs/drizzle.jpg")
   background-position: center;
@@ -81,7 +85,7 @@ const GridRain = styled.div`
 const GridSnow = styled.div`
   display: grid;
   height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
   grid-template-rows: 2fr 1fr 2fr;
   background-image: url("/imgs/snow.jpg")
   background-position: center;
@@ -93,7 +97,7 @@ const GridSnow = styled.div`
 const GridSleet = styled.div`
   display: grid;
   height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
   grid-template-rows: 2fr 1fr 2fr;
   background-image: url("/imgs/sleet.jpeg")
   background-position: center;
@@ -105,7 +109,7 @@ const GridSleet = styled.div`
 const GridFog = styled.div`
   display: grid;
   height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
   grid-template-rows: 2fr 1fr 2fr;
   background-image: url("/imgs/fog.jpg")
   background-position: center;
@@ -117,7 +121,7 @@ const GridFog = styled.div`
 const GridClouds = styled.div`
   display: grid;
   height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
   grid-template-rows: 2fr 1fr 2fr;
   background-image: url("/imgs/clouds.jpeg");
   background-position: center;
@@ -129,7 +133,7 @@ const GridClouds = styled.div`
 const GridClear = styled.div`
   display: grid;
   height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
   grid-template-rows: 2fr 1fr 2fr;
   background-image: url("/imgs/clear-sky.jpg");
   background-position: center;

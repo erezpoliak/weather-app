@@ -48,6 +48,21 @@ export async function fetchYearData(stationId, start, end) {
   return result;
 }
 
+export async function getStationId(cityName) {
+  if (cityName === "tel+aviv") {
+    console.log("api think i am tel aviv");
+    return "40180";
+  } else {
+    const url = `https://api.meteostat.net/v1/stations/search?q=${cityName}&key=jU3rqVLK`;
+    const fetched = await fetch(url);
+    const fetched_json = await fetched.json();
+    const result =
+      fetched_json && fetched_json.data[0] && fetched_json.data[0].id;
+    console.log("station id result from api", result);
+    return result;
+  }
+}
+
 // export async function fetch_autoComplete (e) {
 //     const url =
 //       "https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8";

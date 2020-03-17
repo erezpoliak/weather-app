@@ -11,6 +11,7 @@ const Header = () => {
   const { currentData } = useContext(Forecast_Context);
   const description =
     currentData && currentData.weather && currentData.weather.description;
+  const current_temp = Math.round(currentData.temp);
   return (
     <Container>
       <TopBar>
@@ -28,7 +29,7 @@ const Header = () => {
       <div>
         <City>{currentData.city_name}</City>
         <Summary>{description}</Summary>
-        <Temprature>{currentData.temp}</Temprature>
+        <Temprature>{current_temp}</Temprature>
       </div>
     </Container>
   );

@@ -74,7 +74,9 @@ const AnnualChart = () => {
         }
       }
     });
-  });
+  }, [annualData, stationId]);
+
+  console.log("station id", stationId);
 
   return (
     <Container>
