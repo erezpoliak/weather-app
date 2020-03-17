@@ -79,9 +79,11 @@ const WeeklyForecast = () => {
     }
   };
   const getTime = utc => {
-    let date = new Date(0);
-    date = date.setUTCSeconds(utc);
-    return date.toString();
+    const date = new Date(utc * 1000);
+    let stringDate = date.toTimeString();
+    stringDate = stringDate.split("G");
+    const result = stringDate[0].split(" ");
+    return result[0];
   };
 
   return (

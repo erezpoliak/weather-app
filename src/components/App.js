@@ -1,23 +1,24 @@
-import React from 'react';
-import { createGlobalStyle } from 'styled-components';
-import Home from './Home';
-import Stats from './Stats';
+import React from "react";
+import { createGlobalStyle } from "styled-components";
+import Home from "./Home";
+import Stats from "./Stats";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import PersonalInfo from "./PersonalInfo";
 
 const App = () => {
-    return (
-      <Router>
-        <React.Fragment>
-          <GlobalStyle />
-          <Route exact path="/" component={Home}></Route>
-          <Route path="/stats" component={Stats}></Route>
-        </React.Fragment>
-      </Router> 
-    );
- }
+  return (
+    <Router>
+      <React.Fragment>
+        <GlobalStyle />
+        <Route exact path="/" component={Home}></Route>
+        <Route path="/stats" component={Stats}></Route>
+        <Route path="/info" component={PersonalInfo}></Route>
+      </React.Fragment>
+    </Router>
+  );
+};
 
 export default App;
-
 
 const GlobalStyle = createGlobalStyle`
  body {

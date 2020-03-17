@@ -3,6 +3,9 @@ import styled from "styled-components";
 import AutoCompleteSearch from "./AutoCompleteSearch";
 import TempToggle from "./TempToggle";
 import { Forecast_Context } from "./Context";
+import { Link } from "react-router-dom";
+import { ChartBar } from "@styled-icons/fa-regular/ChartBar";
+import { Info } from "@styled-icons/octicons/Info";
 
 const Header = () => {
   const { currentData } = useContext(Forecast_Context);
@@ -11,8 +14,16 @@ const Header = () => {
   return (
     <Container>
       <TopBar>
+        <StyledLink to="/info">
+          <InfoIcon></InfoIcon>
+        </StyledLink>
         <AutoCompleteSearch></AutoCompleteSearch>
-        <TempToggle></TempToggle>
+        <div>
+          <TempToggle></TempToggle>
+        </div>
+        <StyledLink to="/stats">
+          <StatsIcon></StatsIcon>
+        </StyledLink>
       </TopBar>
       <div>
         <City>{currentData.city_name}</City>
@@ -47,8 +58,22 @@ const Temprature = styled.div`
 `;
 
 const TopBar = styled.div`
-  flex-basis: 15%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 15%);
   justify-content: space-around;
   align-items: center;
+`;
+
+const StyledLink = styled(Link)``;
+
+const StatsIcon = styled(ChartBar)`
+  width: 30%;
+  height: 30%;
+  color: rgba(201, 195, 177, 1);
+`;
+
+const InfoIcon = styled(Info)`
+  width: 30%;
+  height: 30%;
+  color: rgba(201, 195, 177, 1);
 `;

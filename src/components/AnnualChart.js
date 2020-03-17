@@ -89,4 +89,5 @@ export default AnnualChart;
 const Container = styled.div`
   position: relative;
   width: 90vw;
+  margin-top: 8%;
 `;

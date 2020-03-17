@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AnnualChart from "./AnnualChart";
 import YearChart from "./YearChart";
+import { Link } from "react-router-dom";
 
 const Stats = () => {
-  const [stationId, setStationId] = useState(40180);
-
   return (
     <Container>
-      <div></div>
+      <TopBar></TopBar>
       <AnnualChart></AnnualChart>
       <YearChart></YearChart>
     </Container>
@@ -19,7 +18,10 @@ export default Stats;
 
 const Container = styled.div`
   display: grid;
-  height: 100vh;
-  width: 100vw;
-  grid-template-rows: 30% 30% auto;
+  grid-template-rows: 22% auto% auto%;
+`;
+
+const TopBar = styled.div`
+  display: flex;
+  justify-content: flex-start;
 `;
