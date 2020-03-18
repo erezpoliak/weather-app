@@ -8,13 +8,15 @@ const AutoCompleteSearch = () => {
   const { setCityName, setCityKey } = useContext(Forecast_Context);
 
   async function fetch_autoComplete(e) {
-    const url =
-      "https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8";
-    const search_value = e.target.value;
-    const q = "&q=";
-    const fetched_data = await fetch(url + q + search_value);
-    const jsoned = await fetched_data.json();
-    setData(jsoned);
+    if (e.target.value !== "") {
+      const url =
+        "https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8";
+      const search_value = e.target.value;
+      const q = "&q=";
+      const fetched_data = await fetch(url + q + search_value);
+      const jsoned = await fetched_data.json();
+      setData(jsoned);
+    }
   }
 
   const updateCity = (e, value) => {

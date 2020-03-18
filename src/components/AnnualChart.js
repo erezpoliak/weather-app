@@ -12,7 +12,9 @@ const AnnualChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       const fetchedData = await Api.fetchAnnualData(stationId);
+      // if (fetchedData)
       set_annualData(fetchedData);
+      // else set_annualData({});
     };
     fetchData();
   }, [stationId]);
@@ -74,14 +76,18 @@ const AnnualChart = () => {
         }
       }
     });
-  }, [annualData, stationId]);
+  }, [annualData]);
 
   console.log("station id", stationId);
 
   return (
     <Container>
       <h2>Multiannual Temperature Avg</h2>
-      <canvas ref={chartRef} />
+      {annualData === {} ? (
+        <div>sorry no info found from api</div>
+      ) : (
+        <canvas ref={chartRef} />
+      )}
     </Container>
   );
 };

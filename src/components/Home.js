@@ -36,8 +36,7 @@ const Home = () => {
     <Div100vh>
       <Grid>
         <Header></Header>
-        {/* <HourlyForecast></HourlyForecast> */}
-        <div></div>
+        <HourlyForecast></HourlyForecast>
         <WeeklyForecast></WeeklyForecast>
       </Grid>
     </Div100vh>

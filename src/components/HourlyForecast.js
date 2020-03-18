@@ -93,5 +93,6 @@ const WeatherIconAcuu = styled.img`
 `;
 
 const WeatherIconBit = styled.img`
-  width: 100%;
+  width: 12%;
+  height: 12%;
 `;

@@ -8,6 +8,7 @@ const YearChart = () => {
   const chartRef = useRef();
   const { stationId } = useContext(Forecast_Context);
   const [yearData, set_yearData] = useState([]);
+  const did_getData = yearData !== [];
 
   useEffect(() => {
     const fetch_data = async () => {
@@ -16,7 +17,9 @@ const YearChart = () => {
       const start = `${year - 3}-01`;
       const end = `${year - 1}-12`;
       const fetched = await Api.fetchYearData(stationId, start, end);
+      // if(fetched)
       set_yearData(fetched);
+      // else set_yearData([]);
     };
     fetch_data();
   }, [stationId]);
@@ -33,12 +36,14 @@ const YearChart = () => {
       let avgYear = 0;
       const avgYearArr = [];
 
-      for (let i = 0; i < avgTemp.length; i++) {
+      for (let i = 0; i < avgTempArr.length; i++) {
         if (i % 11 === 0 && i !== 0) {
+          avgYear += avgTemp[i];
           avgYearArr.push(avgYear);
           avgYear = 0;
+        } else {
+          avgYear += avgTemp[i];
         }
-        avgYear += avgTemp[i];
       }
       return avgYearArr;
     };
@@ -79,9 +84,18 @@ const YearChart = () => {
     });
   }, [yearData]);
 
+  console.log("this is year data", yearData);
+
   return (
     <Container>
       <h2>Avg temperature for last 3 years</h2>
+      {did_getData ? (
+        <React.Fragment></React.Fragment>
+      ) : (
+        <React.Fragment>
+          <NoInfoDiv>No info in the api for this place yet</NoInfoDiv>
+        </React.Fragment>
+      )}
       <canvas ref={chartRef} />
     </Container>
   );
@@ -93,4 +107,8 @@ const Container = styled.div`
   position: relative;
   width: 90vw;
   margin-top: 8%;
+`;
+
+const NoInfoDiv = styled.div`
+  text-align: center;
 `;

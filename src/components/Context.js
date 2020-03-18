@@ -10,7 +10,7 @@ const Forecast_Provider = ({ children }) => {
   const [currentData, setCurrentData] = useState({});
   const [weeklyData, setWeeklyData] = useState([]);
   const [method, setMethod] = useState("F");
-  const [cityName, setCityName] = useState("tel+aviv");
+  const [cityName, setCityName] = useState("Tel+Aviv");
   const [cityKey, setCityKey] = useState("215854");
   const [stationId, setStationId] = useState("40180");
   // const [annualData, set_annualData] = useState({});

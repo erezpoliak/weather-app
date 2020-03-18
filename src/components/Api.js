@@ -32,34 +32,56 @@ export async function fetchCurrentData(cityName) {
 }
 
 export async function fetchAnnualData(stationId) {
-  const url = `https://api.meteostat.net/v1/climate/normals?station=${stationId}&key=jU3rqVLK`;
-  const fetched = await fetch(url);
-  const fetched_json = await fetched.json();
-  const result =
-    fetched_json && fetched_json.data && fetched_json.data.temperature;
-  return result;
+  try {
+    const url = `https://api.meteostat.net/v1/climate/normals?station=${stationId}&key=jU3rqVLK`;
+    const fetched = await fetch(url);
+    console.log("fetched from fecth annual", fetched);
+    if (fetched.ok) {
+      const fetched_json = await fetched.json();
+      const result =
+        fetched_json && fetched_json.data && fetched_json.data.temperature;
+      return result;
+    } else return {};
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 export async function fetchYearData(stationId, start, end) {
-  const url = `https://api.meteostat.net/v1/history/monthly?station=${stationId}&start=${start}&end=${end}&key=jU3rqVLK`;
-  const fetched = await fetch(url);
-  const fetched_json = await fetched.json();
-  const result = fetched_json.data;
-  return result;
+  try {
+    const url = `https://api.meteostat.net/v1/history/monthly?station=${stationId}&start=${start}&end=${end}&key=jU3rqVLK`;
+    const fetched = await fetch(url);
+    if (fetched.ok) {
+      const fetched_json = await fetched.json();
+      const result = fetched_json.data;
+      return result;
+    } else return [];
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 export async function getStationId(cityName) {
-  if (cityName === "tel+aviv") {
-    console.log("api think i am tel aviv");
-    return "40180";
-  } else {
-    const url = `https://api.meteostat.net/v1/stations/search?q=${cityName}&key=jU3rqVLK`;
-    const fetched = await fetch(url);
-    const fetched_json = await fetched.json();
-    const result =
-      fetched_json && fetched_json.data[0] && fetched_json.data[0].id;
-    console.log("station id result from api", result);
-    return result;
+  try {
+    console.log("cityName from api", cityName);
+    if (cityName !== "Tel+Aviv") {
+      const url = `https://api.meteostat.net/v1/stations/search?q=${cityName}&key=jU3rqVLK`;
+      const fetched = await fetch(url);
+      const fetched_json = await fetched.json();
+      const result =
+        fetched_json && fetched_json.data[0] && fetched_json.data[0].id;
+      console.log("station id result from api", result);
+      if (!result) {
+        return "";
+      } else {
+        return result;
+      }
+    } else {
+      console.log("api think i am tel aviv");
+      return "40180";
+    }
+  } catch (err) {
+    console.error(err);
   }
 }
 
