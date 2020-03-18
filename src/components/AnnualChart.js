@@ -72,7 +72,7 @@ const AnnualChart = () => {
       },
       option: {
         animation: {
-          duration: 2500
+          duration: 1300
         }
       }
     });
@@ -82,7 +82,7 @@ const AnnualChart = () => {
 
   return (
     <Container>
-      <h2>Multiannual Temperature Avg</h2>
+      <Title>Multiannual Temperature Avg</Title>
       {annualData === {} ? (
         <div>sorry no info found from api</div>
       ) : (
@@ -98,4 +98,8 @@ const Container = styled.div`
   position: relative;
   width: 90vw;
   margin-top: 8%;
+`;
+
+const Title = styled.h2`
+  text-align: center;
 `;

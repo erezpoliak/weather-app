@@ -19,9 +19,9 @@ const Header = () => {
           <InfoIcon></InfoIcon>
         </StyledLink>
         <AutoCompleteSearch></AutoCompleteSearch>
-        <div>
+        <ToggleContainer>
           <TempToggle></TempToggle>
-        </div>
+        </ToggleContainer>
         <StyledLink to="/stats">
           <StatsIcon></StatsIcon>
         </StyledLink>
@@ -40,7 +40,7 @@ export default Header;
 const Container = styled.div`
   display: grid;
   grid-template-rows: 35% auto;
-  border: 1px solid black;
+  // border: 1px solid black;
 `;
 
 const City = styled.div`
@@ -60,21 +60,35 @@ const Temprature = styled.div`
 
 const TopBar = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 15%);
+  grid-template-columns: 10% 30% 10% 10%;
+  // grid-template-columns: repeat(4, 1fr);
   justify-content: space-around;
   align-items: center;
+  // display: flex;
 `;
 
-const StyledLink = styled(Link)``;
+const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+`;
+
+const ToggleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+`;
 
 const StatsIcon = styled(ChartBar)`
-  width: 30%;
-  height: 30%;
+  width: 50%;
+  height: 50%;
   color: rgba(201, 195, 177, 1);
 `;
 
 const InfoIcon = styled(Info)`
-  width: 30%;
-  height: 30%;
+  width: 50%;
+  height: 50%;
   color: rgba(201, 195, 177, 1);
 `;

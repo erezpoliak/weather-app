@@ -4,6 +4,8 @@ import AnnualChart from "./AnnualChart";
 import YearChart from "./YearChart";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
+import AutoCompleteSearch from "./AutoCompleteSearch";
+import { Info } from "@styled-icons/octicons/Info";
 
 const Stats = () => {
   return (
@@ -11,6 +13,12 @@ const Stats = () => {
       <TopBar>
         <StyledLink to="/">
           <BackBtn></BackBtn>
+        </StyledLink>
+        <Wrapper>
+          <AutoCompleteSearch></AutoCompleteSearch>
+        </Wrapper>
+        <StyledLink to="/info">
+          <InfoBtn></InfoBtn>
         </StyledLink>
       </TopBar>
       <AnnualChart></AnnualChart>
@@ -27,15 +35,32 @@ const Container = styled.div`
 `;
 
 const TopBar = styled.div`
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 10% 30% 10%;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 const BackBtn = styled(ArrowBack)`
-  width: 22%;
-  height: 22%;
-  // color: rgba(201, 195, 177, 1);
-  margin-top: 11%;
+  width: 65%;
+  height: 65%;
+  color: rgba(201, 195, 177, 1);
 `;
 
-const StyledLink = styled(Link)``;
+const Wrapper = styled.div`
+  dislay: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const InfoBtn = styled(Info)`
+  width: 65%;
+  height: 65%;
+  color: rgba(201, 195, 177, 1);
+`;
+
+const StyledLink = styled(Link)`
+  dislay: flex;
+  justify-content: center;
+  align-items: center;
+`;

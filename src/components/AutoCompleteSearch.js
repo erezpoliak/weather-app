@@ -6,6 +6,7 @@ import { Forecast_Context } from "./Context";
 const AutoCompleteSearch = () => {
   const [data, setData] = useState([]);
   const { setCityName, setCityKey } = useContext(Forecast_Context);
+  const reason = "clear";
 
   async function fetch_autoComplete(e) {
     if (e.target.value !== "") {
@@ -19,7 +20,7 @@ const AutoCompleteSearch = () => {
     }
   }
 
-  const updateCity = (e, value) => {
+  const updateCity = (e, value, reason) => {
     if (value !== null) {
       setCityName(value.LocalizedName.replace(" ", "+"));
       setCityKey(value.Key);

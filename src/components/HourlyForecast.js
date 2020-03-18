@@ -80,19 +80,26 @@ const GridContainer = styled.div`
 
 const HourDiv = styled.div`
   width: 20%;
-  display: flex;
-  flex-direction: column;
+  // height: 70%;
+  // display: flex;
+  // flex-direction: column;
+  // margin: 15%;
   justify-content: center;
   align-items: center;
-  margin: 15%;
+  margin-left 15%;
+  display: grid;
+  grid-template-rows: 20% 60% 20%;
 `;
 
 const WeatherIconAcuu = styled.img`
+  // height: 125%;
+  // width: 125%;
   height: 100%;
   width: 100%;
 `;
 
 const WeatherIconBit = styled.img`
-  width: 12%;
-  height: 12%;
+  // width: 125%;
+  height: 100%;
+  width: 100%;
 `;

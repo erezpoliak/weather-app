@@ -7,6 +7,7 @@ import { TemperatureLow } from "styled-icons/fa-solid/TemperatureLow";
 import { Sunset } from "styled-icons/feather/Sunset";
 import { Forecast_Context } from "./Context";
 import * as Utility from "./Utility";
+import { ArrowDown } from "@styled-icons/fa-solid/ArrowDown";
 
 const WeeklyForecast = () => {
   const { weeklyData, method } = useContext(Forecast_Context);
@@ -100,40 +101,41 @@ const WeeklyForecast = () => {
                 src={`${iconUrl}${i.weather.icon}.png`}
               ></WeatherIcon>
             </WeatherIconWrapper>
-            <MaximumDiv>
+            <MinimumDiv>
               {weeklyTemp && weeklyTemp.tempArr && weeklyTemp.tempArr[index]
                 ? weeklyTemp.tempArr[index].min
                 : ""}
-            </MaximumDiv>
-            <MinimumDiv>
+            </MinimumDiv>
+            <MaximumDiv>
               {weeklyTemp && weeklyTemp.tempArr && weeklyTemp.tempArr[index]
                 ? weeklyTemp.tempArr[index].max
-                : ""}
-            </MinimumDiv>
+                : ""}{" "}
+              &nbsp;&nbsp; <ArrowDownIcon></ArrowDownIcon>
+            </MaximumDiv>
             {!isHidden ? (
               <React.Fragment>
                 <MoreInfoDiv>
                   <WindIcon></WindIcon>
                 </MoreInfoDiv>
-                <MoreInfoDiv>Wind</MoreInfoDiv>
+                <MoreInfoType>Wind</MoreInfoType>
                 <MoreInfoDiv>{i.wind_cdir}</MoreInfoDiv>
                 <MoreInfoDiv>{`${i.wind_spd}ms`}</MoreInfoDiv>
                 <MoreInfoDiv>
                   <MoonIcon></MoonIcon>
                 </MoreInfoDiv>
-                <MoreInfoDiv>Moon Phase</MoreInfoDiv>
+                <MoreInfoType>Moon Phase</MoreInfoType>
                 <MoreInfoDiv></MoreInfoDiv>
                 <MoreInfoDiv>{Math.round(i.moon_phase * 10) / 10}</MoreInfoDiv>
                 <MoreInfoDiv>
                   <SunriseIcon></SunriseIcon>
                 </MoreInfoDiv>
-                <MoreInfoDiv>Sunrise</MoreInfoDiv>
+                <MoreInfoType>Sunrise</MoreInfoType>
                 <MoreInfoDiv></MoreInfoDiv>
                 <MoreInfoDiv>{getTime(i.sunrise_ts)}</MoreInfoDiv>
                 <MoreInfoDiv>
                   <AvgTempIcon></AvgTempIcon>
                 </MoreInfoDiv>
-                <MoreInfoDiv>Avg Temp</MoreInfoDiv>
+                <MoreInfoType>Avg Temp</MoreInfoType>
                 <MoreInfoDiv></MoreInfoDiv>
                 <MoreInfoDiv>
                   {avgTemp && avgTemp.tempArr && avgTemp.tempArr[index]
@@ -143,7 +145,7 @@ const WeeklyForecast = () => {
                 <MoreInfoDiv>
                   <SunsetIcon></SunsetIcon>
                 </MoreInfoDiv>
-                <MoreInfoDiv>Sunset</MoreInfoDiv>
+                <MoreInfoType>Sunset</MoreInfoType>
                 <MoreInfoDiv></MoreInfoDiv>
                 <MoreInfoDiv>{getTime(i.sunset_ts)}</MoreInfoDiv>
               </React.Fragment>
@@ -161,18 +163,20 @@ export default WeeklyForecast;
 
 let HiddenContainer = styled.div`
   overflow: scroll;
-  border: 1px solid black;
+  // border: 1px solid black;
   display: grid;
-  grid-template_rows: repeat(16, 15%);
+  grid-template-rows: repeat(16, 15);
+  // grid-template-rows: repeat(18, 15%);
   font-size: 0.86rem;
   max-width: 100vw;
 `;
 
 let Container = styled.div`
   overflow: scroll;
-  border: 1px solid black;
+  // border: 1px solid black;
   display: grid;
-  grid-template_rows: repeat(16, 90%);
+  grid-template-rows: repeat(16, 90);
+  // grid-template-rows: repeat(18, 90%);
   font-size: 0.86rem;
   max-width: 100vw;
 `;
@@ -211,6 +215,12 @@ const MoreInfoDiv = styled.div`
   max-width: 100vw;
 `;
 
+const MoreInfoType = styled.div`
+  margin-top: 4.2%;
+  margin-bottom: 4.2%;
+  max-width: 100vw;
+`;
+
 const WindIcon = styled(Wind)`
   width: 50%;
   height: 50%;
@@ -234,4 +244,9 @@ const AvgTempIcon = styled(TemperatureLow)`
 const SunsetIcon = styled(Sunset)`
   width: 50%;
   height: 50%;
+`;
+
+const ArrowDownIcon = styled(ArrowDown)`
+  width: 15%;
+  height: 65%;
 `;

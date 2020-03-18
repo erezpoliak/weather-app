@@ -78,7 +78,7 @@ const YearChart = () => {
       },
       option: {
         animation: {
-          duration: 2500
+          duration: 1300
         }
       }
     });
@@ -88,7 +88,7 @@ const YearChart = () => {
 
   return (
     <Container>
-      <h2>Avg temperature for last 3 years</h2>
+      <Title>Avg temperature for last 3 years</Title>
       {did_getData ? (
         <React.Fragment></React.Fragment>
       ) : (
@@ -110,5 +110,9 @@ const Container = styled.div`
 `;
 
 const NoInfoDiv = styled.div`
+  text-align: center;
+`;
+
+const Title = styled.h2`
   text-align: center;
 `;
