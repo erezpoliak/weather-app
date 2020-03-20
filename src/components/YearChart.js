@@ -5,6 +5,7 @@ import { Forecast_Context } from "./Context";
 import * as Api from "./Api";
 
 const YearChart = () => {
+  Chart.defaults.global.defaultFontColor = "white";
   const chartRef = useRef();
   const { stationId } = useContext(Forecast_Context);
   const [yearData, set_yearData] = useState([]);
@@ -77,35 +78,6 @@ const YearChart = () => {
         ]
       },
       option: {
-        legend: {
-          labels: {
-            fontColor: "white",
-            fontSize: 18
-          }
-        },
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                fontColor: "white",
-                fontSize: 18,
-                stepSize: 1,
-                beginAtZero: true
-              }
-            }
-          ],
-          xAxes: [
-            {
-              ticks: {
-                fontColor: "white",
-                fontSize: 14,
-                stepSize: 1,
-                beginAtZero: true
-              }
-            }
-          ]
-        },
-
         animation: {
           duration: 1300
         }
