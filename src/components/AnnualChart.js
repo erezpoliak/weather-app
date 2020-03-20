@@ -71,6 +71,34 @@ const AnnualChart = () => {
         ]
       },
       option: {
+        labels: {
+          fontColor: "rgba(210, 225, 243, 1)",
+          fontSize: 18
+        },
+
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                fontColor: "rgba(210, 225, 243, 1)",
+                fontSize: 18,
+                stepSize: 1,
+                beginAtZero: true
+              }
+            }
+          ],
+          xAxes: [
+            {
+              ticks: {
+                fontColor: "rgba(210, 225, 243, 1)",
+                fontSize: 14,
+                stepSize: 1,
+                beginAtZero: true
+              }
+            }
+          ]
+        },
+
         animation: {
           duration: 1300
         }
@@ -96,8 +124,9 @@ export default AnnualChart;
 
 const Container = styled.div`
   position: relative;
-  width: 90vw;
-  margin-top: 8%;
+  width: 90%;
+  // height: 100%;
+  // margin-top: 8%;
 `;
 
 const Title = styled.h2`

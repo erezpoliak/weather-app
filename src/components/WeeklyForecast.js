@@ -101,17 +101,17 @@ const WeeklyForecast = () => {
                 src={`${iconUrl}${i.weather.icon}.png`}
               ></WeatherIcon>
             </WeatherIconWrapper>
-            <MinimumDiv>
-              {weeklyTemp && weeklyTemp.tempArr && weeklyTemp.tempArr[index]
-                ? weeklyTemp.tempArr[index].min
-                : ""}
-            </MinimumDiv>
             <MaximumDiv>
               {weeklyTemp && weeklyTemp.tempArr && weeklyTemp.tempArr[index]
                 ? weeklyTemp.tempArr[index].max
                 : ""}{" "}
-              &nbsp;&nbsp; <ArrowDownIcon></ArrowDownIcon>
             </MaximumDiv>
+            <MinimumDiv>
+              {weeklyTemp && weeklyTemp.tempArr && weeklyTemp.tempArr[index]
+                ? weeklyTemp.tempArr[index].min
+                : ""}{" "}
+              {/* &nbsp;&nbsp; <ArrowDownIcon></ArrowDownIcon> */}
+            </MinimumDiv>
             {!isHidden ? (
               <React.Fragment>
                 <MoreInfoDiv>
@@ -165,46 +165,66 @@ let HiddenContainer = styled.div`
   overflow: scroll;
   // border: 1px solid black;
   display: grid;
-  grid-template-rows: repeat(16, 15);
+  grid-template-rows: repeat(16, 15%);
   // grid-template-rows: repeat(18, 15%);
   font-size: 0.86rem;
-  max-width: 100vw;
+  // height: 100%;
+  // width: 100%;
 `;
 
 let Container = styled.div`
   overflow: scroll;
   // border: 1px solid black;
   display: grid;
-  grid-template-rows: repeat(16, 90);
+  grid-template-rows: repeat(16, 90%);
   // grid-template-rows: repeat(18, 90%);
   font-size: 0.86rem;
-  max-width: 100vw;
+  // height: 100%;
+  // width: 100%;
 `;
 
 const DayGrid = styled.div`
   display: grid;
   grid-template-columns: 10% 50% 10% 10%;
   justify-content: space-around;
-  max-width: 100vw;
+  // width: 100%;
+  // height: 100%;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
-const DayName = styled.div``;
+const DayName = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const WeatherIconWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+  // height: 100%;
+  // width: 100%;
 `;
 
 const WeatherIcon = styled.img`
-  width: 12%;
-  height: 12%;
+  width: 13%;
+  height: 60%;
 `;
 
 const MinimumDiv = styled.div`
   opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-const MaximumDiv = styled.div``;
+const MaximumDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const MoreInfoDiv = styled.div`
   display: flex;
@@ -212,13 +232,13 @@ const MoreInfoDiv = styled.div`
   align-items: center;
   margin-top: 4.2%;
   margin-bottom: 4.2%;
-  max-width: 100vw;
+  max-width: 100%;
 `;
 
 const MoreInfoType = styled.div`
   margin-top: 4.2%;
   margin-bottom: 4.2%;
-  max-width: 100vw;
+  max-width: 100%;
 `;
 
 const WindIcon = styled(Wind)`

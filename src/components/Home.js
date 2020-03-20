@@ -6,6 +6,9 @@ import WeeklyForecast from "./WeeklyForecast";
 import { Forecast_Context } from "./Context";
 import Div100vh from "react-div-100vh";
 import Divider from "@material-ui/core/Divider";
+import HomeTopBar from "./HomeTopBar";
+import Stats from "./Stats";
+import PersonalInfo from "./PersonalInfo";
 
 const Home = () => {
   // const { currentData } = useContext(Forecast_Context);
@@ -34,24 +37,37 @@ const Home = () => {
   // wallpaper(description);
 
   return (
-    <Div100vh>
-      <Grid>
-        <Header></Header>
-        <Divider variant="middle" />
-        {/* <HourlyForecast></HourlyForecast> */}
-        <div></div>
-        <Divider variant="middle" />
-        <WeeklyForecast></WeeklyForecast>
-      </Grid>
-    </Div100vh>
+    // <Div100vh>
+      <Container>
+        <HomeTopBar></HomeTopBar>
+        <Grid>
+          <SideBar>
+            <TopSectionWrapper>
+              {/* <TopSection> */}
+              {/* <HomeTopBar></HomeTopBar> */}
+              <Header></Header>
+              {/* </TopSection> */}
+              <Divider variant="middle" />
+              {/* <HourlyForecast></HourlyForecast> */}
+              <div></div>
+              <Divider variant="middle" />
+              <WeeklyForecast></WeeklyForecast>
+            </TopSectionWrapper>
+          </SideBar>
+          <StatsWrapper>
+            <Stats></Stats>
+          </StatsWrapper>
+        </Grid>
+      </Container>
+    {/* </Div100vh> */}
   );
 };
 
 export default Home;
 
-let Grid = styled.div`
+const TopSectionWrapper = styled.div`
   display: grid;
-  height: 100vh;
+  height: 100%;
   max-width: 100vw;
   grid-template-rows: 2fr 1% 1fr 1% 2fr;
   // background-image: url("/imgs/clear-sky.jpg");
@@ -59,88 +75,58 @@ let Grid = styled.div`
   // background-repeat: no-repeat;
   // background-size: cover;
   // opacity: 0.6;
+  @media (min-width: 768px) {
+    max-height: 100%;
+    max-width: 100%;
+  }
 `;
 
-// const GridThunder = styled.div`
-//   display: grid;
-//   height: 100vh;
-//   max-width: 100vw;
-//   grid-template-rows: 2fr 1fr 2fr;
-//   background-image: url("/imgs/thunderstorm.jpg")
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   // opacity: 0.6;
-// `;
+const TopSection = styled.div`
+  display: grid;
+  grid-template-rows: 35% auto;
+  max-width: 100%;
+  // border: 1px solid black;
+  // color: rgba(185, 193, 207, 1);
+`;
 
-// const GridRain = styled.div`
-//   display: grid;
-//   height: 100vh;
-//   max-width: 100vw;
-//   grid-template-rows: 2fr 1fr 2fr;
-//   background-image: url("/imgs/drizzle.jpg")
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   // opacity: 0.6;
-// `;
+const SideBar = styled.div`
+  height: 88vh;
+  // max-width: 100%;
+  // display: grid;
+  // grid-template-rows: 12% auto;
+  @media (min-width: 768px) {
+    width: 100%;
+    // height: 100vh;
+  }
+`;
 
-// const GridSnow = styled.div`
-//   display: grid;
-//   height: 100vh;
-//   max-width: 100vw;
-//   grid-template-rows: 2fr 1fr 2fr;
-//   background-image: url("/imgs/snow.jpg")
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   // opacity: 0.6;
-// `;
+const StatsWrapper = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    // display: flex;
+    // justify-content: space-around;
+    // align-items: center;
+    height: 88vh;
+    // width: 100%;
+    display: block;
+  }
+`;
 
-// const GridSleet = styled.div`
-//   display: grid;
-//   height: 100vh;
-//   max-width: 100vw;
-//   grid-template-rows: 2fr 1fr 2fr;
-//   background-image: url("/imgs/sleet.jpeg")
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   // opacity: 0.6;
-// `;
+const Grid = styled.div`
+  height: 88vh;
+  // width: 100%;
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    // grid-template-rows: 10% auto;
+  }
+`;
 
-// const GridFog = styled.div`
-//   display: grid;
-//   height: 100vh;
-//   max-width: 100vw;
-//   grid-template-rows: 2fr 1fr 2fr;
-//   background-image: url("/imgs/fog.jpg")
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   // opacity: 0.6;
-// `;
+const Container = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 12% auto;
+`;
 
-// const GridClouds = styled.div`
-//   display: grid;
-//   height: 100vh;
-//   max-width: 100vw;
-//   grid-template-rows: 2fr 1fr 2fr;
-//   background-image: url("/imgs/clouds.jpeg");
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   // opacity: 0.6;
-// `;
-
-// const GridClear = styled.div`
-//   display: grid;
-//   height: 100vh;
-//   max-width: 100vw;
-//   grid-template-rows: 2fr 1fr 2fr;
-//   background-image: url("/imgs/clear-sky.jpg");
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   // opacity: 0.6;
-// `;
+const FulldislayTopbar = styled.div``;

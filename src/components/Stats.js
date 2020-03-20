@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 import AutoCompleteSearch from "./AutoCompleteSearch";
 import { Info } from "@styled-icons/octicons/Info";
+import Div100vh from "react-div-100vh";
 
 const Stats = () => {
   return (
+    // <Div100vh>
     <Container>
-      <TopBar>
+      {/* <TopBar>
         <StyledLink to="/">
           <BackBtn></BackBtn>
         </StyledLink>
@@ -20,10 +22,12 @@ const Stats = () => {
         <StyledLink to="/info">
           <InfoBtn></InfoBtn>
         </StyledLink>
-      </TopBar>
+      </TopBar> */}
+      <div></div>
       <AnnualChart></AnnualChart>
       <YearChart></YearChart>
     </Container>
+    // </Div100vh>
   );
 };
 
@@ -31,7 +35,12 @@ export default Stats;
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 22% auto% auto%;
+  // display: none;
+  // height: 100%;
+  // grid-template-rows: 22% auto% auto%;
+  // grid-template-rows: 40% 40%;
+  // justify-content: space-around;
+  grid-gap: 8%;
 `;
 
 const TopBar = styled.div`

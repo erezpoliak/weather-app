@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
 import Home from "./Home";
 import Stats from "./Stats";
@@ -9,29 +9,59 @@ import styled from "styled-components";
 
 const App = () => {
   const { currentData } = useContext(Forecast_Context);
-  const description =
-    currentData && currentData.weather && currentData.weather.description;
 
-  const initWallpaper = desc => {
-    if (desc) {
-      if (desc.includes("Thunderstorm")) Wallpaper = WallpaperThunder;
+  useEffect(() => {
+    const initWallpaper = desc => {
+      if (desc) {
+        const rain =
+          desc.includes("Drizzle") ||
+          desc.includes("Rain") ||
+          desc.includes("drizzle") ||
+          desc.includes("rain");
+        const snow =
+          desc.includes("Snow") ||
+          desc.includes("Flurries") ||
+          desc.includes("snow") ||
+          desc.includes("flurries");
+        const sleet = desc.includes("Sleet") || desc.includes("sleet");
+        const fog =
+          desc.includes("Mist") ||
+          desc.includes("Smoke") ||
+          desc.includes("Haze") ||
+          desc.includes("Sand") ||
+          desc.includes("Fog") ||
+          desc.includes("mist") ||
+          desc.includes("smoke") ||
+          desc.includes("haze") ||
+          desc.includes("sand") ||
+          desc.includes("fog");
 
-      if (desc.includes("Drizzle" || "Rain")) Wallpaper = WallpaperRain;
+        if (desc.includes("Thunderstorm")) Wallpaper = WallpaperThunder;
+        else {
+          if (rain) Wallpaper = WallpaperRain;
+        }
 
-      if (desc.includes("Snow" || "Flurries")) Wallpaper = WallpaperSnow;
+        if (snow) Wallpaper = WallpaperSnow;
 
-      if (desc.includes("Sleet")) Wallpaper = WallpaperSleet;
+        if (sleet) Wallpaper = WallpaperSleet;
 
-      if (desc.includes("Mist" || "Smoke" || "Haze" || "Sand" || "Fog"))
-        Wallpaper = WallpaperFog;
+        if (fog) Wallpaper = WallpaperFog;
 
-      if (desc === "Clear sky") Wallpaper = WallpaperClear;
+        if (desc === "Clear sky") Wallpaper = WallpaperClear;
 
-      if (desc.includes("clouds")) Wallpaper = WallpaperClouds;
-    }
-  };
+        if (desc.includes("clouds")) {
+          if (desc.includes("Overcast")) Wallpaper = WallpaperOvercast;
+          else Wallpaper = WallpaperClouds;
+        }
+      }
+    };
+    const description =
+      currentData && currentData.weather && currentData.weather.description;
 
-  initWallpaper(description);
+    console.log("the description from app.js", description);
+
+    initWallpaper(description);
+  }, [currentData]);
 
   return (
     <Router>
@@ -51,94 +81,146 @@ const GlobalStyle = createGlobalStyle`
  body {
    margin: 0;
    padding: 0;
-   font-family: sans-serif;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 300;
    font-size: 10px;
    height: 100%;
    max-width: 100%;
+   color: rgba(210, 225, 243, 1);
  }
 `;
 
 let Wallpaper = styled.div`
-  background-image: url("/imgs/clear-sky.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
   height: 100vh;
   max-width: 100vw;
+  @media (min-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
   // opacity: 0.6;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+    url("/imgs/overcast.jpg") center center no-repeat;
+  background-size: cover;
 `;
 
 const WallpaperThunder = styled.div`
-
-  background-image: url("/imgs/thunderstorm.jpg")
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
   height: 100vh;
   max-width: 100vw;
+  @media (min-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
   // opacity: 0.6;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+    url("/imgs/overcast.jpg") center center no-repeat;
+  background-size: cover;
 `;
 
 const WallpaperRain = styled.div`
-
-  background-image: url("/imgs/drizzle.jpg")
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
   height: 100vh;
   max-width: 100vw;
+  @media (min-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
   // opacity: 0.6;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+    url("/imgs/overcast.jpg") center center no-repeat;
+  background-size: cover;
 `;
 
 const WallpaperSnow = styled.div`
-
-  background-image: url("/imgs/snow.jpg")
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
   height: 100vh;
   max-width: 100vw;
+  @media (min-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
   // opacity: 0.6;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+    url("/imgs/overcast.jpg") center center no-repeat;
+  background-size: cover;
 `;
 
 const WallpaperSleet = styled.div`
-
-  background-image: url("/imgs/sleet.jpeg")
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
   height: 100vh;
   max-width: 100vw;
+  @media (min-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
   // opacity: 0.6;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+    url("/imgs/overcast.jpg") center center no-repeat;
+  background-size: cover;
 `;
 
 const WallpaperFog = styled.div`
-
-  background-image: url("/imgs/fog.jpg")
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
   height: 100vh;
   max-width: 100vw;
+  @media (min-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
   // opacity: 0.6;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+    url("/imgs/overcast.jpg") center center no-repeat;
+  background-size: cover;
 `;
 
 const WallpaperClouds = styled.div`
-  background-image: url("/imgs/clouds.jpeg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
   height: 100vh;
   max-width: 100vw;
+  @media (min-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
   // opacity: 0.6;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+    url("/imgs/overcast.jpg") center center no-repeat;
+  background-size: cover;
 `;
 
 const WallpaperClear = styled.div`
-  background-image: url("/imgs/clear-sky.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
   height: 100vh;
   max-width: 100vw;
+  @media (min-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
   // opacity: 0.6;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+    url("/imgs/overcast.jpg") center center no-repeat;
+  background-size: cover;
+`;
+
+let WallpaperOvercast = styled.div`
+  // background-position: center;
+  // background-repeat: no-repeat;
+  height: 100vh;
+  max-width: 100vw;
+  @media (min-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
+  // opacity: 0.6;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+    url("/imgs/overcast.jpg") center center no-repeat;
+  background-size: cover;
 `;

@@ -77,6 +77,35 @@ const YearChart = () => {
         ]
       },
       option: {
+        legend: {
+          labels: {
+            fontColor: "white",
+            fontSize: 18
+          }
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                fontColor: "white",
+                fontSize: 18,
+                stepSize: 1,
+                beginAtZero: true
+              }
+            }
+          ],
+          xAxes: [
+            {
+              ticks: {
+                fontColor: "white",
+                fontSize: 14,
+                stepSize: 1,
+                beginAtZero: true
+              }
+            }
+          ]
+        },
+
         animation: {
           duration: 1300
         }
@@ -105,8 +134,9 @@ export default YearChart;
 
 const Container = styled.div`
   position: relative;
-  width: 90vw;
-  margin-top: 8%;
+  width: 90%;
+  // margin-top: 8%;
+  // height: 100%;
 `;
 
 const NoInfoDiv = styled.div`

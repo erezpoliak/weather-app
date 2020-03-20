@@ -70,12 +70,14 @@ const HourlyForecast = () => {
 export default HourlyForecast;
 
 const GridContainer = styled.div`
-  border: 1px solid black;
+  // border: 1px solid black;
   display: grid;
   grid-template-columns: repeat(13, 20%);
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+  font-size: 0.72rem;
+  max-width: 100%;
 `;
 
 const HourDiv = styled.div`
@@ -88,7 +90,7 @@ const HourDiv = styled.div`
   align-items: center;
   margin-left 15%;
   display: grid;
-  grid-template-rows: 20% 60% 20%;
+  grid-template-rows: 10% 60% 10%;
 `;
 
 const WeatherIconAcuu = styled.img`
@@ -100,6 +102,6 @@ const WeatherIconAcuu = styled.img`
 
 const WeatherIconBit = styled.img`
   // width: 125%;
-  height: 100%;
+  // height: 100%;
   width: 100%;
 `;

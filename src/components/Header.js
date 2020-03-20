@@ -13,25 +13,25 @@ const Header = () => {
     currentData && currentData.weather && currentData.weather.description;
   const current_temp = Math.round(currentData.temp);
   return (
-    <Container>
-      <TopBar>
-        <StyledLink to="/info">
-          <InfoIcon></InfoIcon>
-        </StyledLink>
-        <AutoCompleteSearch></AutoCompleteSearch>
-        <ToggleContainer>
-          <TempToggle></TempToggle>
-        </ToggleContainer>
-        <StyledLink to="/stats">
-          <StatsIcon></StatsIcon>
-        </StyledLink>
-      </TopBar>
-      <div>
-        <City>{currentData.city_name}</City>
-        <Summary>{description}</Summary>
-        <Temprature>{current_temp}</Temprature>
-      </div>
-    </Container>
+    // <Container>
+    //   <TopBar>
+    //     <StyledLink to="/info">
+    //       <InfoIcon></InfoIcon>
+    //     </StyledLink>
+    //     <AutoCompleteSearch></AutoCompleteSearch>
+    //     <ToggleContainer>
+    //       <TempToggle></TempToggle>
+    //     </ToggleContainer>
+    //     <StyledLink to="/stats">
+    //       <StatsIcon></StatsIcon>
+    //     </StyledLink>
+    //   </TopBar>
+    // </Container>
+    <Wrapper>
+      <City>{currentData.city_name}</City>
+      <Summary>{description}</Summary>
+      <Temprature>{current_temp}</Temprature>
+    </Wrapper>
   );
 };
 
@@ -41,21 +41,33 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 35% auto;
   // border: 1px solid black;
+  // color: rgba(185, 193, 207, 1);
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+  // max-width: 100%;
 `;
 
 const City = styled.div`
   text-align: center;
-  margin-top: 8%;
+  // margin-top: 8%;
+  font-size: 1.25rem;
 `;
 
 const Summary = styled.div`
   text-align: center;
-  margin-top: 8%;
+  // margin-top: 8%;
+  font-size: 1rem;
 `;
 
 const Temprature = styled.div`
   text-align: center;
-  margin-top: 8%;
+  // margin-top: 8%;
+  font-size: 1.1rem;
 `;
 
 const TopBar = styled.div`
