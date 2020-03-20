@@ -38,28 +38,28 @@ const Home = () => {
 
   return (
     // <Div100vh>
-      <Container>
-        <HomeTopBar></HomeTopBar>
-        <Grid>
-          <SideBar>
-            <TopSectionWrapper>
-              {/* <TopSection> */}
-              {/* <HomeTopBar></HomeTopBar> */}
-              <Header></Header>
-              {/* </TopSection> */}
-              <Divider variant="middle" />
-              {/* <HourlyForecast></HourlyForecast> */}
-              <div></div>
-              <Divider variant="middle" />
-              <WeeklyForecast></WeeklyForecast>
-            </TopSectionWrapper>
-          </SideBar>
-          <StatsWrapper>
-            <Stats></Stats>
-          </StatsWrapper>
-        </Grid>
-      </Container>
-    {/* </Div100vh> */}
+    <Container>
+      <HomeTopBar></HomeTopBar>
+      <Grid>
+        <SideBar>
+          <TopSectionWrapper>
+            {/* <TopSection> */}
+            {/* <HomeTopBar></HomeTopBar> */}
+            <Header></Header>
+            {/* </TopSection> */}
+            <Divider variant="middle" />
+            {/* <HourlyForecast></HourlyForecast> */}
+            <div></div>
+            <Divider variant="middle" />
+            <WeeklyForecast></WeeklyForecast>
+          </TopSectionWrapper>
+        </SideBar>
+        <StatsWrapper>
+          <Stats></Stats>
+        </StatsWrapper>
+      </Grid>
+    </Container>
+    // {/* </Div100vh> */}
   );
 };
 
