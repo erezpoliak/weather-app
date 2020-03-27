@@ -44,22 +44,22 @@ const HourlyForecast = () => {
   return (
     <GridContainer>
       <HourDiv key={Math.random()}>
-        <div>Now</div>
+        <FlexWrapper>Now</FlexWrapper>
         <WeatherIconBit
           src={`${iconUrlBit}${bitIcon}.png`}
           alt={bitDescription}
         ></WeatherIconBit>
-        <div>{Math.round(currentTemp.temp)}</div>
+        <FlexWrapper>{`${Math.round(currentTemp.temp)}°`}</FlexWrapper>
       </HourDiv>
       {data12hour.map((i, index) => {
         return (
           <HourDiv key={Math.random()}>
-            <div>{getHour(i.DateTime)}</div>
+            <FlexWrapper>{getHour(i.DateTime)}</FlexWrapper>
             <WeatherIconAcuu
               src={`${iconUrlAcuu}${i.WeatherIcon}.svg`}
               alt={i.IconPhrase}
             ></WeatherIconAcuu>
-            <div>{temp12.tempArr[index]}</div>
+            <FlexWrapper>{`${temp12.tempArr[index]}°`}</FlexWrapper>
           </HourDiv>
         );
       })}
@@ -80,6 +80,12 @@ const GridContainer = styled.div`
   max-width: 100%;
 `;
 
+const FlexWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const HourDiv = styled.div`
   width: 20%;
   // height: 70%;
@@ -90,13 +96,13 @@ const HourDiv = styled.div`
   align-items: center;
   margin-left 15%;
   display: grid;
-  grid-template-rows: 10% 60% 10%;
+  grid-template-rows: 18% 60% 18%;
 `;
 
 const WeatherIconAcuu = styled.img`
   // height: 125%;
   // width: 125%;
-  height: 100%;
+  // height: 100%;
   width: 100%;
 `;
 

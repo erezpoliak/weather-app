@@ -47,7 +47,7 @@ const App = () => {
 
         if (fog) Wallpaper = WallpaperFog;
 
-        if (desc === "Clear sky") Wallpaper = WallpaperClear;
+        if (desc.includes("Clear sky")) Wallpaper = WallpaperClear;
 
         if (desc.includes("clouds")) {
           if (desc.includes("Overcast")) Wallpaper = WallpaperOvercast;
@@ -84,8 +84,8 @@ const GlobalStyle = createGlobalStyle`
    font-family: 'Roboto', sans-serif;
    font-weight: 300;
    font-size: 10px;
-   height: 100%;
-   max-width: 100%;
+   height: 100vh;
+   max-width: 100vw;
    color: rgba(210, 225, 243, 1);
  }
 `;
@@ -206,7 +206,7 @@ const WallpaperClear = styled.div`
   }
   // opacity: 0.6;
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-    url("/imgs/overcast.jpg") center center no-repeat;
+    url("/imgs/clear-sky.jpg") center center no-repeat;
   background-size: cover;
 `;
 
@@ -220,7 +220,7 @@ let WallpaperOvercast = styled.div`
     width: 100%;
   }
   // opacity: 0.6;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85)),
     url("/imgs/overcast.jpg") center center no-repeat;
   background-size: cover;
 `;

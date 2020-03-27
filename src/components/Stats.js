@@ -12,7 +12,7 @@ const Stats = () => {
   return (
     // <Div100vh>
     <Container>
-      {/* <TopBar>
+      <TopBar>
         <StyledLink to="/">
           <BackBtn></BackBtn>
         </StyledLink>
@@ -22,10 +22,12 @@ const Stats = () => {
         <StyledLink to="/info">
           <InfoBtn></InfoBtn>
         </StyledLink>
-      </TopBar> */}
-      <div></div>
+      </TopBar>
+      {/* <div></div> */}
+      {/* <ChartWrapper> */}
       <AnnualChart></AnnualChart>
       <YearChart></YearChart>
+      {/* </ChartWrapper> */}
     </Container>
     // </Div100vh>
   );
@@ -37,10 +39,20 @@ const Container = styled.div`
   display: grid;
   // display: none;
   // height: 100%;
-  // grid-template-rows: 22% auto% auto%;
+  // grid-template-rows: 22% auto auto;
+
+  // grid-template-rows: 12% 88%;
+
+  grid-template-rows: 12% 44% 44%;
+  // justify-content: center;
+  // align-items: center;
+
   // grid-template-rows: 40% 40%;
   // justify-content: space-around;
-  grid-gap: 8%;
+
+  // grid-gap: 8%;
+
+  height: 100vh;
 `;
 
 const TopBar = styled.div`
@@ -48,6 +60,9 @@ const TopBar = styled.div`
   grid-template-columns: 10% 30% 10%;
   justify-content: space-around;
   align-items: center;
+
+  // margin-top: 5%;
+  height: 100%;
 `;
 
 const BackBtn = styled(ArrowBack)`
@@ -57,7 +72,7 @@ const BackBtn = styled(ArrowBack)`
 `;
 
 const Wrapper = styled.div`
-  dislay: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 `;
@@ -69,7 +84,14 @@ const InfoBtn = styled(Info)`
 `;
 
 const StyledLink = styled(Link)`
-  dislay: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const ChartWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
 `;

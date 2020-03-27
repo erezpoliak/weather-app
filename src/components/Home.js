@@ -9,6 +9,9 @@ import Divider from "@material-ui/core/Divider";
 import HomeTopBar from "./HomeTopBar";
 import Stats from "./Stats";
 import PersonalInfo from "./PersonalInfo";
+import AnnualChart from "./AnnualChart";
+import YearChart from "./YearChart";
+import { sizing } from "@material-ui/system";
 
 const Home = () => {
   // const { currentData } = useContext(Forecast_Context);
@@ -48,14 +51,17 @@ const Home = () => {
             <Header></Header>
             {/* </TopSection> */}
             <Divider variant="middle" />
-            {/* <HourlyForecast></HourlyForecast> */}
-            <div></div>
+            <HourlyForecast></HourlyForecast>
+            {/* <div></div> */}
             <Divider variant="middle" />
             <WeeklyForecast></WeeklyForecast>
           </TopSectionWrapper>
         </SideBar>
+        <Divider orientation="vertical" flexItem />
         <StatsWrapper>
-          <Stats></Stats>
+          {/* <Stats></Stats> */}
+          <AnnualChart></AnnualChart>
+          <YearChart></YearChart>
         </StatsWrapper>
       </Grid>
     </Container>
@@ -106,9 +112,13 @@ const StatsWrapper = styled.div`
     // display: flex;
     // justify-content: space-around;
     // align-items: center;
-    height: 88vh;
+    height: 84vh;
     // width: 100%;
-    display: block;
+    // display: block;
+    display: grid;
+    grid-gap: 10%;
+    margin-top: 4%;
+    grid-template-rows: 40% 40%;
   }
 `;
 
@@ -117,8 +127,10 @@ const Grid = styled.div`
   // width: 100%;
   @media (min-width: 768px) {
     display: grid;
+
     grid-template-columns: 60% 40%;
-    // grid-template-rows: 10% auto;
+
+    grid-template-columns: 59.5% 1% 39.5%;
   }
 `;
 

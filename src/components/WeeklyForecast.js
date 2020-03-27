@@ -68,14 +68,12 @@ const WeeklyForecast = () => {
   };
   const openAddInfo = e => {
     if (isHidden) {
-      const tempContainer = HiddenContainer;
-      HiddenContainer = Container;
-      Container = tempContainer;
+      Container = UnhiddenContainer;
+      DayGrid = UnhiddenDayGrid;
       setHidden(false);
     } else {
-      const tempContainer = HiddenContainer;
-      HiddenContainer = Container;
-      Container = tempContainer;
+      Container = HiddenContainer;
+      DayGrid = HiddenDayGrid;
       setHidden(true);
     }
   };
@@ -91,7 +89,7 @@ const WeeklyForecast = () => {
   };
 
   return (
-    <HiddenContainer>
+    <Container>
       {weeklyData.map((i, index) => {
         return (
           <DayGrid key={Math.random()} onClick={openAddInfo}>
@@ -103,12 +101,12 @@ const WeeklyForecast = () => {
             </WeatherIconWrapper>
             <MaximumDiv>
               {weeklyTemp && weeklyTemp.tempArr && weeklyTemp.tempArr[index]
-                ? weeklyTemp.tempArr[index].max
+                ? `${weeklyTemp.tempArr[index].max}°`
                 : ""}{" "}
             </MaximumDiv>
             <MinimumDiv>
               {weeklyTemp && weeklyTemp.tempArr && weeklyTemp.tempArr[index]
-                ? weeklyTemp.tempArr[index].min
+                ? `${weeklyTemp.tempArr[index].min}°`
                 : ""}{" "}
               {/* &nbsp;&nbsp; <ArrowDownIcon></ArrowDownIcon> */}
             </MinimumDiv>
@@ -139,7 +137,7 @@ const WeeklyForecast = () => {
                 <MoreInfoDiv></MoreInfoDiv>
                 <MoreInfoDiv>
                   {avgTemp && avgTemp.tempArr && avgTemp.tempArr[index]
-                    ? avgTemp.tempArr[index]
+                    ? `${avgTemp.tempArr[index]}°`
                     : ""}
                 </MoreInfoDiv>
                 <MoreInfoDiv>
@@ -155,13 +153,13 @@ const WeeklyForecast = () => {
           </DayGrid>
         );
       })}
-    </HiddenContainer>
+    </Container>
   );
 };
 
 export default WeeklyForecast;
 
-let HiddenContainer = styled.div`
+let Container = styled.div`
   overflow: scroll;
   // border: 1px solid black;
   display: grid;
@@ -172,7 +170,18 @@ let HiddenContainer = styled.div`
   // width: 100%;
 `;
 
-let Container = styled.div`
+const HiddenContainer = styled.div`
+  overflow: scroll;
+  // border: 1px solid black;
+  display: grid;
+  grid-template-rows: repeat(16, 15%);
+  // grid-template-rows: repeat(18, 15%);
+  font-size: 0.86rem;
+  // height: 100%;
+  // width: 100%;
+`;
+
+const UnhiddenContainer = styled.div`
   overflow: scroll;
   // border: 1px solid black;
   display: grid;
@@ -183,11 +192,36 @@ let Container = styled.div`
   // width: 100%;
 `;
 
-const DayGrid = styled.div`
+let DayGrid = styled.div`
   display: grid;
-  grid-template-columns: 10% 50% 10% 10%;
+  grid-template-columns: 20% 50% 10% 10%;
+  // grid-template-rows: repeat(6, 16.6%);
   justify-content: space-around;
-  // width: 100%;
+  // max-width: 100%;
+  // height: 100%;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const HiddenDayGrid = styled.div`
+  display: grid;
+  grid-template-columns: 20% 50% 10% 10%;
+  // grid-template-rows: repeat(6, 16.6%);
+  justify-content: space-around;
+  // max-width: 100%;
+  // height: 100%;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const UnhiddenDayGrid = styled.div`
+  display: grid;
+  grid-template-columns: 20% 50% 10% 10%;
+  grid-template-rows: 15% repeat(5, 17%);
+  justify-content: space-around;
+  // max-width: 100%;
   // height: 100%;
   &:hover {
     cursor: pointer;
@@ -198,6 +232,7 @@ const DayName = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 `;
 
 const WeatherIconWrapper = styled.div`
@@ -209,8 +244,8 @@ const WeatherIconWrapper = styled.div`
 `;
 
 const WeatherIcon = styled.img`
-  width: 13%;
-  height: 60%;
+  width: 11%;
+  // height: 55%;
 `;
 
 const MinimumDiv = styled.div`
@@ -218,52 +253,57 @@ const MinimumDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 `;
 
 const MaximumDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 `;
 
 const MoreInfoDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 4.2%;
-  margin-bottom: 4.2%;
+  // margin-top: 4.2%;
+  // margin-bottom: 4.2%;
   max-width: 100%;
+  height: 100%;
 `;
 
 const MoreInfoType = styled.div`
-  margin-top: 4.2%;
-  margin-bottom: 4.2%;
-  max-width: 100%;
+  // margin-top: 4.2%;
+  // margin-bottom: 4.2%;
+  // max-width: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const WindIcon = styled(Wind)`
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
 `;
 
 const MoonIcon = styled(Moon)`
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
 `;
 
 const SunriseIcon = styled(Sunrise)`
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
 `;
 
 const AvgTempIcon = styled(TemperatureLow)`
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
 `;
 
 const SunsetIcon = styled(Sunset)`
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
 `;
 
 const ArrowDownIcon = styled(ArrowDown)`
