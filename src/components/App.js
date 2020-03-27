@@ -191,7 +191,7 @@ const WallpaperClouds = styled.div`
   }
   // opacity: 0.6;
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-    url("/imgs/overcast.jpg") center center no-repeat;
+    url("/imgs/clouds.jpeg") center center no-repeat;
   background-size: cover;
 `;
 
