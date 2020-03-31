@@ -71,10 +71,10 @@ const AnnualChart = () => {
             }
           ]
         },
-        option: {
+        options: {
           labels: {
             fontColor: "rgba(210, 225, 243, 1)",
-            fontSize: 18
+            fontSize: 11
           },
 
           scales: {
@@ -82,7 +82,7 @@ const AnnualChart = () => {
               {
                 ticks: {
                   fontColor: "rgba(210, 225, 243, 1)",
-                  fontSize: 18,
+                  fontSize: 11,
                   stepSize: 1,
                   beginAtZero: true
                 }
@@ -92,7 +92,7 @@ const AnnualChart = () => {
               {
                 ticks: {
                   fontColor: "rgba(210, 225, 243, 1)",
-                  fontSize: 14,
+                  fontSize: 11,
                   stepSize: 1,
                   beginAtZero: true
                 }
@@ -102,7 +102,9 @@ const AnnualChart = () => {
 
           animation: {
             duration: 1300
-          }
+          },
+          responsive: true,
+          maintainAspectRatio: false
         }
       });
     }
@@ -117,7 +119,7 @@ const AnnualChart = () => {
         <NoInfoDiv>Sorry no info for this place yet</NoInfoDiv>
       ) : (
         <Container>
-          <canvas ref={chartRef} />
+          <canvas ref={chartRef} style={{ margin: "0 auto" }} />
         </Container>
       )}
     </Wrapper>
@@ -131,11 +133,15 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 90%;
+  // width: 90%;
 
-  // height: 80%;
+  height: 100%;
+  width: 100%;
 
-  // margin-top: 8%;
+  // @media (min-width: 768px) {
+  //   width: 90%;
+  //   height: 90%;
+  // }
 `;
 
 const Title = styled.h2`
@@ -155,4 +161,7 @@ const NoInfoDiv = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;

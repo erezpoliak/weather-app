@@ -81,10 +81,12 @@ const YearChart = () => {
             }
           ]
         },
-        option: {
+        options: {
           animation: {
             duration: 1300
-          }
+          },
+          responsive: true,
+          maintainAspectRatio: false
         }
       });
     }
@@ -97,7 +99,7 @@ const YearChart = () => {
       <Title>Avg temperature for last 3 years</Title>
       {yearData.length ? (
         <Container>
-          <canvas ref={chartRef} />
+          <canvas ref={chartRef} style={{ margin: "0 auto" }} />
         </Container>
       ) : (
         <NoInfoDiv>Sorry no info for this place yet</NoInfoDiv>
@@ -113,12 +115,15 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 90%;
-  // width: 100%;
+  // width: 90%;
 
-  // height: 80%;
+  width: 100%;
+  height: 100%;
 
-  // margin-top: 8%;
+  // @media (min-width: 768px) {
+  //   width: 90%;
+  //   height: 90%;
+  // }
 `;
 
 const NoInfoDiv = styled.div`
@@ -138,4 +143,7 @@ const Title = styled.h2`
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;

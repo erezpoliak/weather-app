@@ -230,9 +230,11 @@ const UnhiddenDayGrid = styled.div`
 
 const DayName = styled.div`
   display: flex;
-  justify-content: center;
+  // justify-content: center;
+  justify-content: flex-start;
+  margin-left: 10%;
   align-items: center;
-  text-align: center;
+  // text-align: center;
 `;
 
 const WeatherIconWrapper = styled.div`

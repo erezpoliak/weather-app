@@ -37,22 +37,11 @@ export default Stats;
 
 const Container = styled.div`
   display: grid;
-  // display: none;
-  // height: 100%;
-  // grid-template-rows: 22% auto auto;
-
+  grid-template-rows: 12% 42% 42%;
   // grid-template-rows: 12% 88%;
 
-  grid-template-rows: 12% 44% 44%;
-  // justify-content: center;
-  // align-items: center;
-
-  // grid-template-rows: 40% 40%;
-  // justify-content: space-around;
-
-  // grid-gap: 8%;
-
   height: 100vh;
+  width: 100vw;
 `;
 
 const TopBar = styled.div`
@@ -93,5 +82,4 @@ const ChartWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
 `;
