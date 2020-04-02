@@ -46,7 +46,7 @@ const Container = styled.div`
 
 const TopBar = styled.div`
   display: grid;
-  grid-template-columns: 10% 30% 10%;
+  grid-template-columns: 10% 66% 10%;
   justify-content: space-around;
   align-items: center;
 
@@ -58,6 +58,10 @@ const BackBtn = styled(ArrowBack)`
   width: 65%;
   height: 65%;
   color: rgba(201, 195, 177, 1);
+  @media (min-width: 768px) {
+    width: 35%;
+    height: 50%;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -70,6 +74,10 @@ const InfoBtn = styled(Info)`
   width: 65%;
   height: 65%;
   color: rgba(201, 195, 177, 1);
+  @media (min-width: 768px) {
+    width: 35%;
+    height: 50%;
+  }
 `;
 
 const StyledLink = styled(Link)`

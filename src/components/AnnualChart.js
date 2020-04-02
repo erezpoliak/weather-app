@@ -137,11 +137,6 @@ const Container = styled.div`
 
   height: 100%;
   width: 100%;
-
-  // @media (min-width: 768px) {
-  //   width: 90%;
-  //   height: 90%;
-  // }
 `;
 
 const Title = styled.h2`

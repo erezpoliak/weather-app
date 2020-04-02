@@ -248,6 +248,9 @@ const WeatherIconWrapper = styled.div`
 const WeatherIcon = styled.img`
   width: 11%;
   // height: 55%;
+  @media (min-width: 768px) {
+    width: 8.5%;
+  }
 `;
 
 const MinimumDiv = styled.div`
