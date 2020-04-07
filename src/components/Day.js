@@ -6,6 +6,7 @@ import { Sunrise } from "styled-icons/feather/Sunrise";
 import { TemperatureLow } from "styled-icons/fa-solid/TemperatureLow";
 import { Sunset } from "styled-icons/feather/Sunset";
 import { Forecast_Context } from "./Context";
+import { ArrowDown } from "@styled-icons/fa-solid/ArrowDown";
 
 import DailyInfo from "./DailyInfo";
 
@@ -55,11 +56,11 @@ const Day = ({ i, weeklyTemp, avgTemp, index }) => {
         {/* &nbsp;&nbsp; <ArrowDownIcon></ArrowDownIcon> */}
       </MinimumDiv>
       {/* </Container> */}
-      {/* {open && (
-        <DailyInfo avgTemp={avgTemp} getTime={getTime} i={i} index={index} />
-      )} */}
-
       {open && (
+        <DailyInfo avgTemp={avgTemp} getTime={getTime} i={i} index={index} />
+      )}
+
+      {/* {open && (
         <React.Fragment>
           <MoreInfoDiv>
             <WindIcon></WindIcon>
@@ -96,7 +97,7 @@ const Day = ({ i, weeklyTemp, avgTemp, index }) => {
           <MoreInfoDiv></MoreInfoDiv>
           <MoreInfoDiv>{getTime(i.sunset_ts)}</MoreInfoDiv>
         </React.Fragment>
-      )}
+      )} */}
     </Grid>
   );
 };
@@ -203,4 +204,8 @@ const AvgTempIcon = styled(TemperatureLow)`
 const SunsetIcon = styled(Sunset)`
   width: 80%;
   height: 80%;
+`;
+
+const ArrowDownIcon = styled(ArrowDown)`
+  width: 22%;
 `;

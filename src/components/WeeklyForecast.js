@@ -125,7 +125,8 @@ export default WeeklyForecast;
 
 const Container = styled.div`
   overflow: scroll;
-  height: 100%;
+  // height: 100%;
+  height: 34.4vh;
 
   font-size: 0.86rem;
 `;

@@ -20,7 +20,8 @@ const DailyInfo = ({ avgTemp, getTime, i, type, index }) => {
   // }
 
   return (
-    <Container>
+    // <Container>
+    <>
       <Box>
         <WindIcon></WindIcon>
       </Box>
@@ -59,7 +60,8 @@ const DailyInfo = ({ avgTemp, getTime, i, type, index }) => {
       <Type>Sunset</Type>
       <Box></Box>
       <Box>{getTime(i.sunset_ts)}</Box>
-    </Container>
+      {/* </Container> */}
+    </>
   );
 };
 
