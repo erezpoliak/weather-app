@@ -14,11 +14,15 @@ const WeeklyForecast = () => {
   const [isHidden, setHidden] = useState(true);
   const [weeklyTemp, set_weeklyTemp] = useState({ method: "F", tempArr: [] });
   const [avgTemp, setAvgTemp] = useState({ method: "F", tempArr: [] });
+
+  const [containerRows, set_containerRows] = useState("repeat(16, 15%)");
+  const [dayGridRows, set_dayGridRows] = useState("1fr");
+
   useEffect(() => {
-    const new_weeklyTempArr = weeklyData.map(i => {
+    const new_weeklyTempArr = weeklyData.map((i) => {
       return { min: Math.round(i.min_temp), max: Math.round(i.max_temp) };
     });
-    const new_avgTempArr = weeklyData.map(i => {
+    const new_avgTempArr = weeklyData.map((i) => {
       return Math.round(i.temp);
     });
     const new_weeklyTemp = { method: "F", tempArr: new_weeklyTempArr };
@@ -29,10 +33,10 @@ const WeeklyForecast = () => {
 
   useEffect(() => {
     if (method !== weeklyTemp.method) {
-      const result_arr = weeklyTemp.tempArr.map(i => {
+      const result_arr = weeklyTemp.tempArr.map((i) => {
         return {
           min: Utility.convertTemp(i.min, weeklyTemp.method),
-          max: Utility.convertTemp(i.max, weeklyTemp.method)
+          max: Utility.convertTemp(i.max, weeklyTemp.method),
         };
       });
       const new_weekly = { method: method, tempArr: result_arr };
@@ -40,7 +44,7 @@ const WeeklyForecast = () => {
     }
 
     if (method !== avgTemp.method) {
-      const new_arr = avgTemp.tempArr.map(i => {
+      const new_arr = avgTemp.tempArr.map((i) => {
         return Utility.convertTemp(i, avgTemp.method);
       });
       const new_avg = { method: method, tempArr: new_arr };
@@ -51,11 +55,11 @@ const WeeklyForecast = () => {
     avgTemp.method,
     avgTemp.tempArr,
     weeklyTemp.method,
-    weeklyTemp.tempArr
+    weeklyTemp.tempArr,
   ]);
 
   const iconUrl = "https://www.weatherbit.io/static/img/icons/";
-  const getDayName = dateString => {
+  const getDayName = (dateString) => {
     const date = new Date(dateString);
     const day = date.getDay();
     if (day === 0) return "Sunday";
@@ -66,18 +70,19 @@ const WeeklyForecast = () => {
     if (day === 5) return "Friday";
     if (day === 6) return "Saturday";
   };
-  const openAddInfo = e => {
+  const openAddInfo = (e) => {
     if (isHidden) {
-      Container = UnhiddenContainer;
-      DayGrid = UnhiddenDayGrid;
+      set_containerRows("repeat(16, 90%)");
+      set_dayGridRows("15% repeat(5, 17%)");
       setHidden(false);
     } else {
-      Container = HiddenContainer;
-      DayGrid = HiddenDayGrid;
+      set_containerRows("repeat(16, 15%)");
+      set_dayGridRows("1fr");
       setHidden(true);
     }
   };
-  const getTime = utc => {
+
+  const getTime = (utc) => {
     const date = new Date(utc * 1000);
     let stringDate = date.toTimeString();
     stringDate = stringDate.split("G");
@@ -89,10 +94,14 @@ const WeeklyForecast = () => {
   };
 
   return (
-    <Container>
+    <Container gridRows={containerRows}>
       {weeklyData.map((i, index) => {
         return (
-          <DayGrid key={Math.random()} onClick={openAddInfo}>
+          <DayGrid
+            key={Math.random()}
+            onClick={openAddInfo}
+            gridRows={dayGridRows}
+          >
             <DayName>{getDayName(i.valid_date)}</DayName>
             <WeatherIconWrapper>
               <WeatherIcon
@@ -159,70 +168,19 @@ const WeeklyForecast = () => {
 
 export default WeeklyForecast;
 
-let Container = styled.div`
+const Container = styled.div`
   overflow: scroll;
-  // border: 1px solid black;
   display: grid;
-  grid-template-rows: repeat(16, 15%);
-  // grid-template-rows: repeat(18, 15%);
+  grid-template-rows: ${(props) =>
+    props.gridRows ? props.gridRows : "repeat(16, 15%)"};
   font-size: 0.86rem;
-  // height: 100%;
-  // width: 100%;
 `;
 
-const HiddenContainer = styled.div`
-  overflow: scroll;
-  // border: 1px solid black;
-  display: grid;
-  grid-template-rows: repeat(16, 15%);
-  // grid-template-rows: repeat(18, 15%);
-  font-size: 0.86rem;
-  // height: 100%;
-  // width: 100%;
-`;
-
-const UnhiddenContainer = styled.div`
-  overflow: scroll;
-  // border: 1px solid black;
-  display: grid;
-  grid-template-rows: repeat(16, 90%);
-  // grid-template-rows: repeat(18, 90%);
-  font-size: 0.86rem;
-  // height: 100%;
-  // width: 100%;
-`;
-
-let DayGrid = styled.div`
+const DayGrid = styled.div`
   display: grid;
   grid-template-columns: 20% 50% 10% 10%;
-  // grid-template-rows: repeat(6, 16.6%);
+  grid-template-rows: ${(props) => (props.gridRows ? props.gridRows : "1fr")};
   justify-content: space-around;
-  // max-width: 100%;
-  // height: 100%;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const HiddenDayGrid = styled.div`
-  display: grid;
-  grid-template-columns: 20% 50% 10% 10%;
-  // grid-template-rows: repeat(6, 16.6%);
-  justify-content: space-around;
-  // max-width: 100%;
-  // height: 100%;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const UnhiddenDayGrid = styled.div`
-  display: grid;
-  grid-template-columns: 20% 50% 10% 10%;
-  grid-template-rows: 15% repeat(5, 17%);
-  justify-content: space-around;
-  // max-width: 100%;
-  // height: 100%;
   &:hover {
     cursor: pointer;
   }
@@ -309,9 +267,4 @@ const AvgTempIcon = styled(TemperatureLow)`
 const SunsetIcon = styled(Sunset)`
   width: 80%;
   height: 80%;
-`;
-
-const ArrowDownIcon = styled(ArrowDown)`
-  width: 15%;
-  height: 65%;
 `;

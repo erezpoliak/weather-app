@@ -113,7 +113,7 @@ const StatsWrapper = styled.div`
     // justify-content: space-around;
     // align-items: center;
     height: 84vh;
-    // width: 100%;
+    width: 39.5vw;
     // display: block;
     display: grid;
     grid-gap: 10%;
