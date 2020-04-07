@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Wind } from "styled-icons/boxicons-regular/Wind";
 import { Moon } from "styled-icons/fa-solid/Moon";
@@ -9,6 +9,8 @@ import { Forecast_Context } from "./Context";
 import * as Utility from "./Utility";
 import { ArrowDown } from "@styled-icons/fa-solid/ArrowDown";
 
+import Day from "./Day";
+
 const WeeklyForecast = () => {
   const { weeklyData, method } = useContext(Forecast_Context);
   const [isHidden, setHidden] = useState(true);
@@ -17,6 +19,8 @@ const WeeklyForecast = () => {
 
   const [containerRows, set_containerRows] = useState("repeat(16, 15%)");
   const [dayGridRows, set_dayGridRows] = useState("1fr");
+
+  const dayGrid_ref = useRef();
 
   useEffect(() => {
     const new_weeklyTempArr = weeklyData.map((i) => {
@@ -74,6 +78,11 @@ const WeeklyForecast = () => {
     if (isHidden) {
       set_containerRows("repeat(16, 90%)");
       set_dayGridRows("15% repeat(5, 17%)");
+
+      // dayGrid_ref.current.style.gridTemplateRows = "15% repeat(5,17%)";
+      // console.log("ref", dayGrid_ref.current);
+      // console.log("ref style", dayGrid_ref.current.style);
+
       setHidden(false);
     } else {
       set_containerRows("repeat(16, 15%)");
@@ -93,73 +102,19 @@ const WeeklyForecast = () => {
     return [...Arr];
   };
 
+  console.log("ishidden", isHidden);
+
   return (
-    <Container gridRows={containerRows}>
+    <Container gridRows={containerRows} onClick={openAddInfo}>
       {weeklyData.map((i, index) => {
         return (
-          <DayGrid
-            key={Math.random()}
-            onClick={openAddInfo}
-            gridRows={dayGridRows}
-          >
-            <DayName>{getDayName(i.valid_date)}</DayName>
-            <WeatherIconWrapper>
-              <WeatherIcon
-                src={`${iconUrl}${i.weather.icon}.png`}
-              ></WeatherIcon>
-            </WeatherIconWrapper>
-            <MaximumDiv>
-              {weeklyTemp && weeklyTemp.tempArr && weeklyTemp.tempArr[index]
-                ? `${weeklyTemp.tempArr[index].max}°`
-                : ""}{" "}
-            </MaximumDiv>
-            <MinimumDiv>
-              {weeklyTemp && weeklyTemp.tempArr && weeklyTemp.tempArr[index]
-                ? `${weeklyTemp.tempArr[index].min}°`
-                : ""}{" "}
-              {/* &nbsp;&nbsp; <ArrowDownIcon></ArrowDownIcon> */}
-            </MinimumDiv>
-            {!isHidden ? (
-              <React.Fragment>
-                <MoreInfoDiv>
-                  <WindIcon></WindIcon>
-                </MoreInfoDiv>
-                <MoreInfoType>Wind</MoreInfoType>
-                <MoreInfoDiv>{i.wind_cdir}</MoreInfoDiv>
-                <MoreInfoDiv>{`${i.wind_spd}ms`}</MoreInfoDiv>
-                <MoreInfoDiv>
-                  <MoonIcon></MoonIcon>
-                </MoreInfoDiv>
-                <MoreInfoType>Moon Phase</MoreInfoType>
-                <MoreInfoDiv></MoreInfoDiv>
-                <MoreInfoDiv>{Math.round(i.moon_phase * 10) / 10}</MoreInfoDiv>
-                <MoreInfoDiv>
-                  <SunriseIcon></SunriseIcon>
-                </MoreInfoDiv>
-                <MoreInfoType>Sunrise</MoreInfoType>
-                <MoreInfoDiv></MoreInfoDiv>
-                <MoreInfoDiv>{getTime(i.sunrise_ts)}</MoreInfoDiv>
-                <MoreInfoDiv>
-                  <AvgTempIcon></AvgTempIcon>
-                </MoreInfoDiv>
-                <MoreInfoType>Avg Temp</MoreInfoType>
-                <MoreInfoDiv></MoreInfoDiv>
-                <MoreInfoDiv>
-                  {avgTemp && avgTemp.tempArr && avgTemp.tempArr[index]
-                    ? `${avgTemp.tempArr[index]}°`
-                    : ""}
-                </MoreInfoDiv>
-                <MoreInfoDiv>
-                  <SunsetIcon></SunsetIcon>
-                </MoreInfoDiv>
-                <MoreInfoType>Sunset</MoreInfoType>
-                <MoreInfoDiv></MoreInfoDiv>
-                <MoreInfoDiv>{getTime(i.sunset_ts)}</MoreInfoDiv>
-              </React.Fragment>
-            ) : (
-              <React.Fragment></React.Fragment>
-            )}
-          </DayGrid>
+          <Day
+            key={index}
+            i={i}
+            weeklyTemp={weeklyTemp}
+            avgTemp={avgTemp}
+            index={index}
+          ></Day>
         );
       })}
     </Container>
@@ -170,9 +125,8 @@ export default WeeklyForecast;
 
 const Container = styled.div`
   overflow: scroll;
-  display: grid;
-  grid-template-rows: ${(props) =>
-    props.gridRows ? props.gridRows : "repeat(16, 15%)"};
+  height: 100%;
+
   font-size: 0.86rem;
 `;
 
