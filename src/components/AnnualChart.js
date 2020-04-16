@@ -7,6 +7,9 @@ import * as Api from "./Api";
 const AnnualChart = () => {
   const chartRef = useRef();
   const { stationId } = useContext(Forecast_Context);
+
+  const glaop = 'asdjklas';
+
   const [annualData, set_annualData] = useState({});
 
   useEffect(() => {
