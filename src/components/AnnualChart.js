@@ -7,6 +7,9 @@ import * as Api from "./Api";
 const AnnualChart = () => {
   const chartRef = useRef();
   const { stationId } = useContext(Forecast_Context);
+
+  const test = 'testyy';
+
   const [annualData, set_annualData] = useState({});
 
   useEffect(() => {
@@ -118,10 +121,10 @@ const AnnualChart = () => {
       {!Object.keys(annualData).length ? (
         <NoInfoDiv>Sorry no info for this place yet</NoInfoDiv>
       ) : (
-        <Container>
-          <canvas ref={chartRef} style={{ margin: "0 auto" }} />
-        </Container>
-      )}
+          <Container>
+            <canvas ref={chartRef} style={{ margin: "0 auto" }} />
+          </Container>
+        )}
     </Wrapper>
   );
 };
