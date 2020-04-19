@@ -12,7 +12,7 @@ export async function fetchWeeklyData(cityName) {
 
 export async function fetch12HourData(cityKey) {
   try {
-    const url = `http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${cityKey}?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8`;
+    const url = `https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${cityKey}?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8`;
     const response = await fetch(url);
     const jsoned = await response.json();
     return jsoned;
