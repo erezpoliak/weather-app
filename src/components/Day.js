@@ -57,7 +57,9 @@ const Day = ({ i, weeklyTemp, avgTemp, index }) => {
         {/* &nbsp;&nbsp; <DropDownIcon></DropDownIcon> */}
       </MinimumDiv>
 
-      <DropDownIcon></DropDownIcon>
+      <FlexWrapper>
+        <DropDownIcon></DropDownIcon>
+      </FlexWrapper>
 
       {/* </Container> */}
       {open && (
@@ -114,7 +116,7 @@ const Grid = styled.div`
 
   // grid-template-columns: 20% 50% 10% 10%;
 
-  grid-template-columns: 20% 50% 6.66% 6.66% 6.66%;
+  grid-template-columns: 20% 50% 10% 10% 8%;
 
   height: ${({ open }) => (open ? "100%" : "15%")};
   justify-content: space-around;
@@ -127,7 +129,7 @@ const Container = styled.div`
   display: grid;
   // grid-template-columns: 20% 50% 10% 10%;
 
-  grid-template-columns: 20% 50% 6.66% 6.66% 6.66%;
+  grid-template-columns: 20% 50% 10% 10% 8%;
 
   width: 100%;
 `;
@@ -220,6 +222,13 @@ const ArrowDownIcon = styled(ArrowDown)`
 `;
 
 const DropDownIcon = styled(ArrowDropDown)`
-  // width: 40%;
+  width: 70%;
   // color: rgb(255, 255, 255);
+`;
+
+const FlexWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `;
