@@ -30,7 +30,7 @@ const Header = () => {
     <Wrapper>
       <City>{currentData.city_name}</City>
       <Summary>{description}</Summary>
-      <Temprature>{`${current_temp}`}</Temprature>
+      <Temprature>{`${current_temp}°`}</Temprature>
     </Wrapper>
   );
 };
