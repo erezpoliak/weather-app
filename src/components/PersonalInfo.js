@@ -19,8 +19,12 @@ const PersonalInfo = () => {
         <IconWrapper>
           <LinkedInIcon></LinkedInIcon>
           <FacebookIcon></FacebookIcon>
-          <GithubIcon></GithubIcon>
-          <MailIcon></MailIcon>
+          <LinkIcon href="https://github.com/erezpoliak/weather-app">
+            <GithubIcon></GithubIcon>
+          </LinkIcon>
+          <LinkIcon href="mailto: poliakerez@gmail.com">
+            <MailIcon></MailIcon>
+          </LinkIcon>
         </IconWrapper>
         <LinkCode href="https://github.com/erezpoliak/weather-app">
           Check out my code
@@ -65,13 +69,13 @@ const FacebookIcon = styled(Facebook)`
 `;
 
 const GithubIcon = styled(GithubSquare)`
-  width: 10%;
-  height: 40%;
+  width: 100%;
+  height: 100%;
 `;
 
 const MailIcon = styled(Mail)`
-  width: 10%;
-  height: 40%;
+  width: 100%;
+  height: 100%;
 `;
 
 const LinkCode = styled.a`
@@ -89,6 +93,12 @@ const TopBar = styled(Link)`
 
 const ForwardIcon = styled(ArrowForward)`
   margin-right: 5%;
+  width: 10%;
+  height: 40%;
+  color: rgba(210, 225, 243, 1);
+`;
+
+const LinkIcon = styled.a`
   width: 10%;
   height: 40%;
   color: rgba(210, 225, 243, 1);
