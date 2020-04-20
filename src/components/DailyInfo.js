@@ -27,44 +27,44 @@ const DailyInfo = ({ avgTemp, getTime, i, type, index }) => {
       </Box>
       <Type>Wind</Type>
       <Box>{i.wind_cdir}</Box>
-      <Box>{`${i.wind_spd}ms`}</Box>
-      <div></div>
+      <LastItem>{`${i.wind_spd}ms`}</LastItem>
+      {/* <div></div> */}
 
       <Box>
         <MoonIcon></MoonIcon>
       </Box>
       <Type>Moon Phase</Type>
       <Box></Box>
-      <Box>{Math.round(i.moon_phase * 10) / 10}</Box>
-      <div></div>
+      <LastItem>{Math.round(i.moon_phase * 10) / 10}</LastItem>
+      {/* <div></div> */}
 
       <Box>
         <SunriseIcon></SunriseIcon>
       </Box>
       <Type>Sunrise</Type>
       <Box></Box>
-      <Box>{getTime(i.sunrise_ts)}</Box>
-      <div></div>
+      <LastItem>{getTime(i.sunrise_ts)}</LastItem>
+      {/* <div></div> */}
 
       <Box>
         <AvgTempIcon></AvgTempIcon>
       </Box>
       <Type>Avg Temp</Type>
       <Box></Box>
-      <Box>
+      <LastItem>
         {avgTemp && avgTemp.tempArr && avgTemp.tempArr[index]
           ? `${avgTemp.tempArr[index]}°`
           : ""}
-      </Box>
-      <div></div>
+      </LastItem>
+      {/* <div></div> */}
 
       <Box>
         <SunsetIcon></SunsetIcon>
       </Box>
       <Type>Sunset</Type>
       <Box></Box>
-      <Box>{getTime(i.sunset_ts)}</Box>
-      <div></div>
+      <LastItem>{getTime(i.sunset_ts)}</LastItem>
+      {/* <div></div> */}
       {/* </Container> */}
     </>
   );
@@ -116,4 +116,13 @@ const AvgTempIcon = styled(TemperatureLow)`
 const SunsetIcon = styled(Sunset)`
   width: 80%;
   height: 80%;
+`;
+
+const LastItem = styled.div`
+  grid-column: 4 / span 2;
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  // justify-content: center;
+  align-items: center;
 `;
