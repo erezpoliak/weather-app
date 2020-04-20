@@ -28,6 +28,7 @@ const DailyInfo = ({ avgTemp, getTime, i, type, index }) => {
       <Type>Wind</Type>
       <Box>{i.wind_cdir}</Box>
       <Box>{`${i.wind_spd}ms`}</Box>
+      <div></div>
 
       <Box>
         <MoonIcon></MoonIcon>
@@ -35,6 +36,7 @@ const DailyInfo = ({ avgTemp, getTime, i, type, index }) => {
       <Type>Moon Phase</Type>
       <Box></Box>
       <Box>{Math.round(i.moon_phase * 10) / 10}</Box>
+      <div></div>
 
       <Box>
         <SunriseIcon></SunriseIcon>
@@ -42,6 +44,7 @@ const DailyInfo = ({ avgTemp, getTime, i, type, index }) => {
       <Type>Sunrise</Type>
       <Box></Box>
       <Box>{getTime(i.sunrise_ts)}</Box>
+      <div></div>
 
       <Box>
         <AvgTempIcon></AvgTempIcon>
@@ -53,6 +56,7 @@ const DailyInfo = ({ avgTemp, getTime, i, type, index }) => {
           ? `${avgTemp.tempArr[index]}°`
           : ""}
       </Box>
+      <div></div>
 
       <Box>
         <SunsetIcon></SunsetIcon>
@@ -60,6 +64,7 @@ const DailyInfo = ({ avgTemp, getTime, i, type, index }) => {
       <Type>Sunset</Type>
       <Box></Box>
       <Box>{getTime(i.sunset_ts)}</Box>
+      <div></div>
       {/* </Container> */}
     </>
   );

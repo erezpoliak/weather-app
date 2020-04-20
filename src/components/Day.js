@@ -7,6 +7,7 @@ import { TemperatureLow } from "styled-icons/fa-solid/TemperatureLow";
 import { Sunset } from "styled-icons/feather/Sunset";
 import { Forecast_Context } from "./Context";
 import { ArrowDown } from "@styled-icons/fa-solid/ArrowDown";
+import { ArrowDropDown } from "@styled-icons/remix-line/ArrowDropDown";
 
 import DailyInfo from "./DailyInfo";
 
@@ -53,8 +54,11 @@ const Day = ({ i, weeklyTemp, avgTemp, index }) => {
         {weeklyTemp && weeklyTemp.tempArr && weeklyTemp.tempArr[index]
           ? `${weeklyTemp.tempArr[index].min}°`
           : ""}{" "}
-        {/* &nbsp;&nbsp; <ArrowDownIcon></ArrowDownIcon> */}
+        {/* &nbsp;&nbsp; <DropDownIcon></DropDownIcon> */}
       </MinimumDiv>
+
+      <DropDownIcon></DropDownIcon>
+
       {/* </Container> */}
       {open && (
         <DailyInfo avgTemp={avgTemp} getTime={getTime} i={i} index={index} />
@@ -108,7 +112,9 @@ const Grid = styled.div`
   display: grid;
   grid-template-rows: ${({ open }) => (open ? "15% repeat(5, 17%)" : "1fr")};
 
-  grid-template-columns: 20% 50% 10% 10%;
+  // grid-template-columns: 20% 50% 10% 10%;
+
+  grid-template-columns: 20% 50% 6.66% 6.66% 6.66%;
 
   height: ${({ open }) => (open ? "100%" : "15%")};
   justify-content: space-around;
@@ -119,7 +125,10 @@ const Grid = styled.div`
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 20% 50% 10% 10%;
+  // grid-template-columns: 20% 50% 10% 10%;
+
+  grid-template-columns: 20% 50% 6.66% 6.66% 6.66%;
+
   width: 100%;
 `;
 
@@ -208,4 +217,9 @@ const SunsetIcon = styled(Sunset)`
 
 const ArrowDownIcon = styled(ArrowDown)`
   width: 22%;
+`;
+
+const DropDownIcon = styled(ArrowDropDown)`
+  // width: 40%;
+  // color: rgb(255, 255, 255);
 `;
