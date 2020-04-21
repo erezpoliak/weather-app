@@ -12,7 +12,7 @@ const App = () => {
   const [bcg, setBcg] = useState("clear-sky.jpg");
 
   useEffect(() => {
-    const initWallpaper = desc => {
+    const initWallpaper = (desc) => {
       if (desc) {
         const rain =
           desc.includes("Drizzle") ||
@@ -106,144 +106,28 @@ const GlobalStyle = createGlobalStyle`
    font-weight: 300;
    font-size: 10px;
    height: 100vh;
-   max-width: 100vw;
+   width: 100vw;
    color: rgba(210, 225, 243, 1);
+   @media (orientation: landscape) and (max-width: 768px){
+     transform: rotate(-90deg);
+     transform-origin: 50vh 50vh;
+     width: 100vh;
+     height: 100vw;
+   }
  }
 `;
 
 const Wallpaper = styled.div`
-  height: 100vh;
-  max-width: 100vw;
-  @media (min-width: 768px) {
-    height: 100%;
-    width: 100%;
-  }
+  height: 100%;
+  width: 100%;
+
+
   // background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
   //   url("/imgs/clear-sky.jpg") center center no-repeat;
 
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-  url("/imgs/${props => props.bcg}") center center no-repeat;
+  url("/imgs/${(props) => props.bcg}") center center no-repeat;
 
 
   background-size: cover;
 `;
-
-// const WallpaperThunder = styled.div`
-//   // background-position: center
-//   // background-repeat: no-repeat;
-//   height: 100vh;
-//   max-width: 100vw;
-//   @media (min-width: 768px) {
-//     height: 100%;
-//     width: 100%;
-//   }
-//   // opacity: 0.6;
-//   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-//     url("/imgs/thunderstorm.jpg") center center no-repeat;
-//   background-size: cover;
-// `;
-
-// const WallpaperRain = styled.div`
-//   // background-position: center;
-//   // background-repeat: no-repeat;
-//   height: 100vh;
-//   max-width: 100vw;
-//   @media (min-width: 768px) {
-//     height: 100%;
-//     width: 100%;
-//   }
-//   // opacity: 0.6;
-//   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-//     url("/imgs/drizzle.jpg") center center no-repeat;
-//   background-size: cover;
-// `;
-
-// const WallpaperSnow = styled.div`
-//   // background-position: center;
-//   // background-repeat: no-repeat;
-//   height: 100vh;
-//   max-width: 100vw;
-//   @media (min-width: 768px) {
-//     height: 100%;
-//     width: 100%;
-//   }
-//   // opacity: 0.6;
-//   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-//     url("/imgs/snow.jpg") center center no-repeat;
-//   background-size: cover;
-// `;
-
-// const WallpaperSleet = styled.div`
-//   // background-position: center;
-//   // background-repeat: no-repeat;
-//   height: 100vh;
-//   max-width: 100vw;
-//   @media (min-width: 768px) {
-//     height: 100%;
-//     width: 100%;
-//   }
-//   // opacity: 0.6;
-//   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-//     url("/imgs/sleet.jpeg") center center no-repeat;
-//   background-size: cover;
-// `;
-
-// const WallpaperFog = styled.div`
-//   // background-position: center;
-//   // background-repeat: no-repeat;
-//   height: 100vh;
-//   max-width: 100vw;
-//   @media (min-width: 768px) {
-//     height: 100%;
-//     width: 100%;
-//   }
-//   // opacity: 0.6;
-//   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-//     url("/imgs/fog.jpg") center center no-repeat;
-//   background-size: cover;
-// `;
-
-// const WallpaperClouds = styled.div`
-//   // background-position: center;
-//   // background-repeat: no-repeat;
-//   height: 100vh;
-//   max-width: 100vw;
-//   @media (min-width: 768px) {
-//     height: 100%;
-//     width: 100%;
-//   }
-//   // opacity: 0.6;
-//   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-//     url("/imgs/clouds.jpeg") center center no-repeat;
-//   background-size: cover;
-// `;
-
-// const WallpaperClear = styled.div`
-//   // background-position: center;
-//   // background-repeat: no-repeat;
-//   height: 100vh;
-//   max-width: 100vw;
-//   @media (min-width: 768px) {
-//     height: 100%;
-//     width: 100%;
-//   }
-//   // opacity: 0.6;
-//   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
-//     url("/imgs/clear-sky.jpg") center center no-repeat;
-//   background-size: cover;
-// `;
-
-// let WallpaperOvercast = styled.div`
-//   // background-position: center;
-//   // background-repeat: no-repeat;
-//   height: 100vh;
-//   max-width: 100vw;
-//   @media (min-width: 768px) {
-//     height: 100%;
-//     width: 100%;
-//   }
-//   // opacity: 0.6;
-//   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85)),
-//     url("/imgs/overcast.jpg") center center no-repeat;
-//   background-size: cover;
-// `;

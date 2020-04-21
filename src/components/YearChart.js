@@ -8,7 +8,6 @@ const YearChart = () => {
   Chart.defaults.global.defaultFontColor = "white";
 
   Chart.defaults.global.responsive = true;
-  // Chart.defaults.global.maintainAspectRatio = false;
 
   const chartRef = useRef();
   const { stationId } = useContext(Forecast_Context);
@@ -32,11 +31,11 @@ const YearChart = () => {
     const date = new Date();
     const year = date.getFullYear();
 
-    const avgTemp = yearData.map(i => {
+    const avgTemp = yearData.map((i) => {
       return (i.temperature_min + i.temperature_max) / 2;
     });
 
-    const getAvgYears = avgTempArr => {
+    const getAvgYears = (avgTempArr) => {
       let avgYear = 0;
       const avgYearArr = [];
 
@@ -70,24 +69,24 @@ const YearChart = () => {
               backgroundColor: [
                 "rgba(255, 99, 132, 0.2)",
                 "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)"
+                "rgba(255, 206, 86, 0.2)",
               ],
               borderColor: [
                 "rgba(255, 99, 132, 1)",
                 "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)"
+                "rgba(255, 206, 86, 1)",
               ],
-              borderWidth: 1
-            }
-          ]
+              borderWidth: 1,
+            },
+          ],
         },
         options: {
           animation: {
-            duration: 1300
+            duration: 1300,
           },
           responsive: true,
-          maintainAspectRatio: false
-        }
+          maintainAspectRatio: false,
+        },
       });
     }
   }, [yearData]);
@@ -114,20 +113,13 @@ const Container = styled.div`
   position: relative;
   justify-content: center;
   align-items: center;
+`;
 
-  // width: 90%;
-
-  width: 100%;
-  height: 100%;
-
-  // @media (min-width: 768px) {
-  //   width: 90%;
-  //   height: 90%;
-  // }
+const Title = styled.h2`
+  text-align: center;
 `;
 
 const NoInfoDiv = styled.div`
-  // height: 100%;
   display: flex;
   align-items: center;
   height: 70%;
@@ -136,13 +128,7 @@ const NoInfoDiv = styled.div`
   font-family: "Indie Flower", cursive;
 `;
 
-const Title = styled.h2`
-  text-align: center;
-`;
-
 const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

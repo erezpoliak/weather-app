@@ -23,11 +23,8 @@ const Stats = () => {
           <InfoBtn></InfoBtn>
         </StyledLink>
       </TopBar>
-      {/* <div></div> */}
-      {/* <ChartWrapper> */}
       <AnnualChart></AnnualChart>
       <YearChart></YearChart>
-      {/* </ChartWrapper> */}
     </Container>
     // </Div100vh>
   );
@@ -38,7 +35,6 @@ export default Stats;
 const Container = styled.div`
   display: grid;
   grid-template-rows: 12% 42% 42%;
-  // grid-template-rows: 12% 88%;
 
   height: 100vh;
   width: 100vw;
@@ -50,7 +46,6 @@ const TopBar = styled.div`
   justify-content: space-around;
   align-items: center;
 
-  // margin-top: 5%;
   height: 100%;
 `;
 
@@ -84,10 +79,4 @@ const StyledLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const ChartWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;

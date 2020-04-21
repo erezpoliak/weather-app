@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const PersonalInfo = () => {
   return (
-    <React.Fragment>
+    <Grid>
       <TopBar to="/">
         <ForwardIcon></ForwardIcon>
       </TopBar>
@@ -30,14 +30,18 @@ const PersonalInfo = () => {
           Check out my code
         </LinkCode>
       </InfoWrapper>
-    </React.Fragment>
+    </Grid>
   );
 };
 
 export default PersonalInfo;
 
+const Grid = styled.div`
+  display: grid;
+  grid-template-rows: 12% 88%;
+`;
+
 const InfoWrapper = styled.div`
-  height: 88vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,7 +58,6 @@ const Desc = styled.h5`
 
 const IconWrapper = styled.div`
   display: flex;
-  // margin-left: 5%;
   justify-content: center;
 `;
 
@@ -86,9 +89,7 @@ const LinkCode = styled.a`
 const TopBar = styled(Link)`
   display: flex;
   align-items: center;
-  height: 12vh;
   justify-content: flex-end;
-  // margin-right: 5%;
 `;
 
 const ForwardIcon = styled(ArrowForward)`

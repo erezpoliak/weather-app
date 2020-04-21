@@ -8,8 +8,6 @@ const AnnualChart = () => {
   const chartRef = useRef();
   const { stationId } = useContext(Forecast_Context);
 
-  const blabla = 'sakdlasdasdsad';
-
   const [annualData, set_annualData] = useState({});
 
   useEffect(() => {
@@ -54,7 +52,7 @@ const AnnualChart = () => {
                 "rgba(16, 178, 16, 0.2)",
                 "rgba(138, 16, 178, 0.2)",
                 "rgba(237, 167, 53, 0.2)",
-                "rgba(190, 95, 241, 0.2)"
+                "rgba(190, 95, 241, 0.2)",
               ],
               borderColor: [
                 "rgba(255, 99, 132, 1)",
@@ -68,16 +66,16 @@ const AnnualChart = () => {
                 "rgba(16, 178, 16, 1)",
                 "rgba(138, 16, 178, 1)",
                 "rgba(237, 167, 53, 1)",
-                "rgba(190, 95, 241, 1)"
+                "rgba(190, 95, 241, 1)",
               ],
-              borderWidth: 1
-            }
-          ]
+              borderWidth: 1,
+            },
+          ],
         },
         options: {
           labels: {
             fontColor: "rgba(210, 225, 243, 1)",
-            fontSize: 11
+            fontSize: 11,
           },
 
           scales: {
@@ -87,9 +85,9 @@ const AnnualChart = () => {
                   fontColor: "rgba(210, 225, 243, 1)",
                   fontSize: 11,
                   stepSize: 1,
-                  beginAtZero: true
-                }
-              }
+                  beginAtZero: true,
+                },
+              },
             ],
             xAxes: [
               {
@@ -97,18 +95,18 @@ const AnnualChart = () => {
                   fontColor: "rgba(210, 225, 243, 1)",
                   fontSize: 11,
                   stepSize: 1,
-                  beginAtZero: true
-                }
-              }
-            ]
+                  beginAtZero: true,
+                },
+              },
+            ],
           },
 
           animation: {
-            duration: 1300
+            duration: 1300,
           },
           responsive: true,
-          maintainAspectRatio: false
-        }
+          maintainAspectRatio: false,
+        },
       });
     }
   }, [annualData]);
@@ -121,10 +119,10 @@ const AnnualChart = () => {
       {!Object.keys(annualData).length ? (
         <NoInfoDiv>Sorry no info for this place yet</NoInfoDiv>
       ) : (
-          <Container>
-            <canvas ref={chartRef} style={{ margin: "0 auto" }} />
-          </Container>
-        )}
+        <Container>
+          <canvas ref={chartRef} style={{ margin: "0 auto" }} />
+        </Container>
+      )}
     </Wrapper>
   );
 };
@@ -135,11 +133,6 @@ const Container = styled.div`
   position: relative;
   justify-content: center;
   align-items: center;
-
-  // width: 90%;
-
-  height: 100%;
-  width: 100%;
 `;
 
 const Title = styled.h2`
@@ -147,7 +140,6 @@ const Title = styled.h2`
 `;
 
 const NoInfoDiv = styled.div`
-  // height: 100%;
   display: flex;
   align-items: center;
   height: 70%;
@@ -157,8 +149,6 @@ const NoInfoDiv = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

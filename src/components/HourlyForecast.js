@@ -8,7 +8,7 @@ const HourlyForecast = () => {
   const [currentTemp, set_currentTemp] = useState({ method: "F", temp: null });
   const [temp12, set_temp12] = useState({ method: "F", tempArr: [] });
   useEffect(() => {
-    const new_tempArr = data12hour.map(i => {
+    const new_tempArr = data12hour.map((i) => {
       return i.Temperature.Value;
     });
     const new_temp12 = { method: "F", tempArr: new_tempArr };
@@ -25,7 +25,7 @@ const HourlyForecast = () => {
     set_currentTemp(new_temp);
   }
   if (method !== temp12.method) {
-    const new_arr = temp12.tempArr.map(i => {
+    const new_arr = temp12.tempArr.map((i) => {
       return Utility.convertTemp(i, temp12.method);
     });
     const new12temp = { method: method, tempArr: new_arr };
@@ -37,7 +37,7 @@ const HourlyForecast = () => {
     currentData && currentData.weather && currentData.weather.description;
   const iconUrlAcuu = "https://www.accuweather.com/images/weathericons/";
   const iconUrlBit = "https://www.weatherbit.io/static/img/icons/";
-  const getHour = date => {
+  const getHour = (date) => {
     const result = date.slice(11, 13);
     return result;
   };
@@ -45,20 +45,24 @@ const HourlyForecast = () => {
     <GridContainer>
       <HourDiv key={Math.random()}>
         <FlexWrapper>Now</FlexWrapper>
-        <WeatherIconBit
-          src={`${iconUrlBit}${bitIcon}.png`}
-          alt={bitDescription}
-        ></WeatherIconBit>
+        <FlexWrapper>
+          <WeatherIcon
+            src={`${iconUrlBit}${bitIcon}.png`}
+            alt={bitDescription}
+          ></WeatherIcon>
+        </FlexWrapper>
         <FlexWrapper>{`${Math.round(currentTemp.temp)}°`}</FlexWrapper>
       </HourDiv>
       {data12hour.map((i, index) => {
         return (
           <HourDiv key={Math.random()}>
             <FlexWrapper>{getHour(i.DateTime)}</FlexWrapper>
-            <WeatherIconAcuu
-              src={`${iconUrlAcuu}${i.WeatherIcon}.svg`}
-              alt={i.IconPhrase}
-            ></WeatherIconAcuu>
+            <FlexWrapper>
+              <WeatherIcon
+                src={`${iconUrlAcuu}${i.WeatherIcon}.svg`}
+                alt={i.IconPhrase}
+              ></WeatherIcon>
+            </FlexWrapper>
             <FlexWrapper>{`${temp12.tempArr[index]}°`}</FlexWrapper>
           </HourDiv>
         );
@@ -70,14 +74,12 @@ const HourlyForecast = () => {
 export default HourlyForecast;
 
 const GridContainer = styled.div`
-  // border: 1px solid black;
   display: grid;
   grid-template-columns: repeat(13, 20%);
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
   font-size: 0.72rem;
-  max-width: 100%;
 `;
 
 const FlexWrapper = styled.div`
@@ -87,27 +89,12 @@ const FlexWrapper = styled.div`
 `;
 
 const HourDiv = styled.div`
-  width: 20%;
-  // height: 70%;
-  // display: flex;
-  // flex-direction: column;
-  // margin: 15%;
   justify-content: center;
   align-items: center;
-  margin-left 15%;
   display: grid;
   grid-template-rows: 18% 60% 18%;
 `;
 
-const WeatherIconAcuu = styled.img`
-  // height: 125%;
-  // width: 125%;
-  // height: 100%;
-  width: 100%;
-`;
-
-const WeatherIconBit = styled.img`
-  // width: 125%;
-  // height: 100%;
-  width: 100%;
+const WeatherIcon = styled.img`
+  width: 40%;
 `;

@@ -46,20 +46,15 @@ const Home = () => {
       <Grid>
         <SideBar>
           <TopSectionWrapper>
-            {/* <TopSection> */}
-            {/* <HomeTopBar></HomeTopBar> */}
             <Header></Header>
-            {/* </TopSection> */}
             <Divider variant="middle" />
             <HourlyForecast></HourlyForecast>
-            {/* <div></div> */}
             <Divider variant="middle" />
             <WeeklyForecast></WeeklyForecast>
           </TopSectionWrapper>
         </SideBar>
         <Divider orientation="vertical" flexItem />
         <StatsWrapper>
-          {/* <Stats></Stats> */}
           <AnnualChart></AnnualChart>
           <YearChart></YearChart>
         </StatsWrapper>
@@ -74,47 +69,21 @@ export default Home;
 const TopSectionWrapper = styled.div`
   display: grid;
   height: 100%;
-  max-width: 100vw;
   grid-template-rows: 2fr 1% 1fr 1% 2fr;
-  // background-image: url("/imgs/clear-sky.jpg");
-  // background-position: center;
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  // opacity: 0.6;
-  @media (min-width: 768px) {
-    max-height: 100%;
-    max-width: 100%;
-  }
-`;
-
-const TopSection = styled.div`
-  display: grid;
-  grid-template-rows: 35% auto;
-  max-width: 100%;
-  // border: 1px solid black;
-  // color: rgba(185, 193, 207, 1);
 `;
 
 const SideBar = styled.div`
   height: 88vh;
-  // max-width: 100%;
-  // display: grid;
-  // grid-template-rows: 12% auto;
-  @media (min-width: 768px) {
-    width: 100%;
-    // height: 100vh;
+  @media (orientation: landscape) and (max-width: 768px) {
+    height: 88vw;
   }
 `;
 
 const StatsWrapper = styled.div`
   display: none;
   @media (min-width: 768px) {
-    // display: flex;
-    // justify-content: space-around;
-    // align-items: center;
     height: 84vh;
     width: 39.5vw;
-    // display: block;
     display: grid;
     grid-gap: 10%;
     margin-top: 4%;
@@ -124,7 +93,6 @@ const StatsWrapper = styled.div`
 
 const Grid = styled.div`
   height: 88vh;
-  // width: 100%;
   @media (min-width: 768px) {
     display: grid;
 
@@ -132,13 +100,16 @@ const Grid = styled.div`
 
     grid-template-columns: 59.5% 1% 39.5%;
   }
+  @media (orientation: landscape) and (max-width: 768px) {
+    height: 88vw;
+  }
 `;
 
 const Container = styled.div`
   height: 100vh;
-  width: 100vw;
   display: grid;
   grid-template-rows: 12% auto;
+  @media (orientation: landscape) and (max-width: 768px) {
+    height: 100vw;
+  }
 `;
-
-const FulldislayTopbar = styled.div``;
