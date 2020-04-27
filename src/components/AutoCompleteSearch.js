@@ -11,9 +11,9 @@ const AutoCompleteSearch = () => {
   const [isLoading, set_isLoading] = useState(false);
   const reason = "Clear";
 
-  const fetch_autoComplete = text => {
+  const fetch_autoComplete = (text) => {
     set_isLoading(true);
-    const fetchData = debounce(async text => {
+    const fetchData = debounce(async (text) => {
       if (text !== "") {
         const url =
           "https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=Zfo3zMIGUFpf44SjmscYCEAFZRoCbLY8";
@@ -24,7 +24,7 @@ const AutoCompleteSearch = () => {
         setData(jsoned);
         set_isLoading(false);
       } else setData([]);
-    }, 1200);
+    }, 700);
     fetchData(text);
   };
 
@@ -42,12 +42,12 @@ const AutoCompleteSearch = () => {
       loading={isLoading}
       loadingText="Loading..."
       selectOnFocus={true}
-      getOptionLabel={option => option.LocalizedName}
+      getOptionLabel={(option) => option.LocalizedName}
       style={{ width: "80%" }}
       size="small"
-      onInputChange={e => fetch_autoComplete(e.target.value)}
+      onInputChange={(e) => fetch_autoComplete(e.target.value)}
       onChange={updateCity}
-      renderInput={params => (
+      renderInput={(params) => (
         <TextField
           style={{ width: "100%" }}
           placeholder="Select City"
