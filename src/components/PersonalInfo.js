@@ -39,6 +39,7 @@ export default PersonalInfo;
 const Grid = styled.div`
   display: grid;
   grid-template-rows: 12% 88%;
+  height: 100vh;
 `;
 
 const InfoWrapper = styled.div`
