@@ -32,7 +32,9 @@ const Header = () => {
     <Wrapper>
       <City>{currentData.city_name}</City>
       <Summary>{description}</Summary>
-      <Temprature>{`${Math.round(currentTemp.temp)}°`}</Temprature>
+      <Temprature>
+        {currentTemp.temp ? `${Math.round(currentTemp.temp)}°` : "loading.."}
+      </Temprature>
     </Wrapper>
   );
 };

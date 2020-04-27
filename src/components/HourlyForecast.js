@@ -51,7 +51,9 @@ const HourlyForecast = () => {
             alt={bitDescription}
           ></WeatherIcon>
         </FlexWrapper>
-        <FlexWrapper>{`${Math.round(currentTemp.temp)}°`}</FlexWrapper>
+        <FlexWrapper>
+          {currentTemp.temp ? `${Math.round(currentTemp.temp)}°` : "loading.."}
+        </FlexWrapper>
       </HourDiv>
       {data12hour.map((i, index) => {
         return (
