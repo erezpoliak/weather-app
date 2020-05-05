@@ -12,7 +12,7 @@ const TempToggle = () => {
   const { method, setMethod } = useContext(Forecast_Context);
   const { checked, setChecked } = useState(false);
 
-  const changeToggle = e => {
+  const changeToggle = (e) => {
     if (method === "F") setMethod("C");
     else setMethod("F");
   };
@@ -40,7 +40,7 @@ const TempToggle = () => {
             size="small"
           />
         }
-        label="C°"
+        label={`${method}°`}
         size="small"
       />
     </FormGroup>
