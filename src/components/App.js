@@ -108,12 +108,12 @@ const GlobalStyle = createGlobalStyle`
    height: 100vh;
    width: 100vw;
    color: rgba(210, 225, 243, 1);
-   @media (orientation: landscape) and (max-width: 768px){
+   /* @media (orientation: landscape) and (max-width: 768px){
      transform: rotate(-90deg);
      transform-origin: 50vh 50vh;
      width: 100vh;
      height: 100vw;
-   }
+   } */
  }
 `;
 
