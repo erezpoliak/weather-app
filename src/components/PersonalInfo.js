@@ -17,12 +17,12 @@ const PersonalInfo = () => {
         <Name>Erez Poliak</Name>
         <Desc>Full Stack Web Developer</Desc>
         <IconWrapper>
-          <LinkIcon href="https://google.com">
+          <LinkIcon href="https://www.linkedin.com/in/erez-poliak-9552091b3/">
             <LinkedInIcon></LinkedInIcon>
           </LinkIcon>
-          <LinkIcon href="https://google.com">
+          {/* <LinkIcon href="https://google.com">
             <FacebookIcon></FacebookIcon>
-          </LinkIcon>
+          </LinkIcon> */}
           <LinkIcon href="https://github.com/erezpoliak/weather-app">
             <GithubIcon></GithubIcon>
           </LinkIcon>
@@ -64,7 +64,7 @@ const Desc = styled.h5`
 const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: ;
+  align-items: center;
 `;
 
 const LinkedInIcon = styled(Linkedin)`

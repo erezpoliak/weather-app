@@ -76,17 +76,21 @@ const WeeklyForecast = () => {
 
   return (
     <Container gridRows={containerRows} onClick={openAddInfo}>
-      {weeklyData.map((i, index) => {
-        return (
-          <Day
-            key={index}
-            i={i}
-            weeklyTemp={weeklyTemp}
-            avgTemp={avgTemp}
-            index={index}
-          ></Day>
-        );
-      })}
+      {weeklyData ? (
+        weeklyData.map((i, index) => {
+          return (
+            <Day
+              key={index}
+              i={i}
+              weeklyTemp={weeklyTemp}
+              avgTemp={avgTemp}
+              index={index}
+            ></Day>
+          );
+        })
+      ) : (
+        <div>loading...</div>
+      )}
     </Container>
   );
 };
