@@ -16,14 +16,46 @@ const Forecast_Provider = ({ children }) => {
   useEffect(() => {
     const getData = async () => {
       const fetched12hour = await Api.fetch12HourData(cityKey);
-      setData12hour(fetched12hour);
+      console.log("fetched 12 hour- localstorage response test");
+      console.log(fetched12hour);
+      if (fetched12hour)
+        window.localStorage.setItem(
+          "data12Hour",
+          JSON.stringify(fetched12hour)
+        );
+      const data12Hour = JSON.parse(window.localStorage.getItem("data12Hour"));
+      setData12hour(data12Hour);
       const fetchedCurrent = await Api.fetchCurrentData(cityName);
-      setCurrentData(fetchedCurrent);
+      if (fetchedCurrent)
+        window.localStorage.setItem(
+          "dataCurrent",
+          JSON.stringify(fetchedCurrent)
+        );
+      const dataCurrent = JSON.parse(
+        window.localStorage.getItem("dataCurrent")
+      );
+      setCurrentData(dataCurrent);
       const fetchedWeekly = await Api.fetchWeeklyData(cityName);
-      setWeeklyData(fetchedWeekly);
+      console.log("fetched weekly- localstorage response test");
+      console.log(fetchedWeekly);
+      if (fetchedWeekly)
+        window.localStorage.setItem(
+          "dataWeekly",
+          JSON.stringify(fetchedWeekly)
+        );
+      const dataWeekly = JSON.parse(window.localStorage.getItem("dataWeekly"));
+      setWeeklyData(dataWeekly);
 
       const fetched_stationId = await Api.getStationId(cityName);
-      setStationId(fetched_stationId);
+      if (fetched_stationId)
+        window.localStorage.setItem(
+          "dataStationId",
+          JSON.stringify(fetched_stationId)
+        );
+      const dataStationId = JSON.parse(
+        window.localStorage.getItem("dataStationId")
+      );
+      setStationId(dataStationId);
     };
     getData();
     console.log("api called");

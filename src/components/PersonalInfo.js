@@ -23,7 +23,7 @@ const PersonalInfo = () => {
           {/* <LinkIcon href="https://google.com">
             <FacebookIcon></FacebookIcon>
           </LinkIcon> */}
-          <LinkIcon href="https://github.com/erezpoliak/weather-app">
+          <LinkIcon href="https://github.com/erezpoliak/">
             <GithubIcon></GithubIcon>
           </LinkIcon>
           <LinkIcon href="mailto: poliakerez@gmail.com">
